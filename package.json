@@ -1,0 +1,12 @@
+{
+  "name": "ui_nereshit",
+  "version": "1.0.0",
+  "description": "This is my Nershit ui practice",
+  "license": "ISC",
+  "author": "ABINASH ROUT",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
