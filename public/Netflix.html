@@ -8,6 +8,12 @@
       rel="stylesheet"
       href="/node_modules/bootstrap-icons/font/bootstrap-icons.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
     <style>
       * {
         margin: 0;
@@ -50,6 +56,7 @@
         border: 1px solid white;
         padding: 6px;
         border-radius: 6px;
+        font-family: Poppins;
       }
       .language span {
         margin-right: 5px;
@@ -139,6 +146,9 @@
         transition: 0.3s;
         width: 80%;
       }
+      .bottom-text {
+        font-size: 15px;
+      }
 
       .btn {
         display: flex;
@@ -201,6 +211,55 @@
         font-weight: bold;
         font-size: 30px;
       }
+      footer {
+        background: black;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        padding-right: 150px;
+        padding-left: 150px;
+        padding-bottom: 80px;
+      }
+      .col-1,
+      .col-2,
+      .col-3,
+      .col-4 {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 20px;
+      }
+
+      .col-1 span,
+      .col-2 span,
+      .col-3 span,
+      .col-4 span {
+        margin-bottom: 20px;
+        text-decoration: underline;
+        font-family: Poppins;
+      }
+
+      address {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 40px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .row-2 {
+        display: grid;
+        grid-template-columns: 3fr 3fr 3fr 3fr;
+        row-gap: 50px;
+      }
+      .row-3 {
+        width: 130px;
+        padding-top: 20px;
+      }
+      .row-4 {
+        margin-top: 40px;
+      }
+      .row-4 h5 {
+        margin-top: 50px;
+      }
     </style>
   </head>
 
@@ -246,7 +305,7 @@
               </div>
             </div>
             <div>
-              <span>New members only. Terms below. </span>
+              <span class="bottom-text">New members only. Terms below. </span>
             </div>
           </section>
         </main>
@@ -278,6 +337,53 @@
           </div>
         </div>
       </section>
+
+      <footer>
+        <section class="row-1">
+          <address>Questions? Call 000-800-919-1743</address>
+        </section>
+        <section class="row-2">
+          <div class="col-1">
+            <span class="items">Faqs </span>
+            <span>Investor Relations</span>
+            <span>Ways to Watch </span>
+            <span>Privacy </span>
+          </div>
+
+          <div class="col-2">
+            <span>Corporate Information</span>
+            <span>Speed Test</span>
+            <span>Only on Netflix</span>
+          </div>
+
+          <div class="col-3">
+            <span>Help Centre</span>
+            <span>Media Centre</span>
+            <span>Jobs</span>
+            <span>Terms of Use</span>
+          </div>
+
+          <div class="col-4">
+            <span>Cookie Preferences</span>
+            <span>Contact Us</span>
+            <span>Legal Notices</span>
+          </div>
+        </section>
+        <section class="row-3">
+          <div class="language">
+            <span class="bi bi-command"></span>
+            <span>English</span>
+            <span class="bi bi-chevron-down"></span>
+          </div>
+        </section>
+        <section class="row-4">
+          <p>Netflix India</p>
+          <h5>
+            This page is protected by Google reCAPTCHA to ensure you're not a
+            bot.
+          </h5>
+        </section>
+      </footer>
     </div>
   </body>
 </html>
