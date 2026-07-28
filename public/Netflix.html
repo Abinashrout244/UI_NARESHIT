@@ -18,19 +18,22 @@
       * {
         margin: 0;
         padding: 0;
+        font-family: Poppins;
       }
       body {
         color: white;
       }
       .shade {
-        background-color: rgba(0, 0, 0, 0.7);
+        /* background-color: rgba(0, 0, 0, 0.2); */
         background: url("./images/netflix.jpg") center/cover no-repeat;
         height: 100vh; /* Hero section height */
       }
       .hero {
-        background: rgba(0, 0, 0, 0.6); /* Dark overlay */
-        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+         height: 100%;
       }
+    
+
       header {
         display: flex;
         flex-direction: row;
@@ -95,7 +98,7 @@
         gap: 2rem;
         text-align: center;
         padding: 20px;
-        padding-top: 150px;
+        padding-top: 100px;
         padding-bottom: 36px;
       }
 
@@ -112,13 +115,13 @@
       }
 
       .main-title {
-        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-size:55px;
         font-weight: 700;
         line-height: 1.2;
       }
 
       .sub-title {
-        font-size: clamp(1rem, 2vw, 1.5rem);
+        font-size:20px;
         color: #d1d5db;
       }
 
@@ -155,12 +158,12 @@
         align-items: center;
         justify-content: center;
         gap: 8px;
-        padding: 15px 25px;
+        padding: 15px 20px;
         background: #e50914;
         color: #fff;
         border: none;
         border-radius: 6px;
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 600;
         cursor: pointer;
         transition: 0.3s;
@@ -251,7 +254,7 @@
         row-gap: 50px;
       }
       .row-3 {
-        width: 130px;
+        width: 110px;
         padding-top: 20px;
       }
       .row-4 {
@@ -259,6 +262,16 @@
       }
       .row-4 h5 {
         margin-top: 50px;
+      }
+      select{
+        background-color: transparent;
+        color: white;
+        border: none;
+      }
+      option{
+        color:Black;
+        font-weight:400;
+        padding: 10px;
       }
     </style>
   </head>
@@ -276,9 +289,11 @@
           </div>
           <div class="right-btn">
             <div class="language">
-              <span class="bi bi-command"></span>
-              <span>English</span>
-              <span class="bi bi-chevron-down"></span>
+              <span class="bi bi-translate"></span>
+             <select>
+            <option value="en">English</option>
+            <option value="hi">हिन्दी</option>
+            </select>
             </div>
             <div class="auth-btn">
               <span>Sign in</span>
@@ -300,7 +315,7 @@
             <div class="entry-sec">
               <input type="text" placeholder="Email Adddress" class="input" />
               <div class="btn">
-                <span>Try7 Days for $0 </span>
+                <span>Try7 Days for &#8377 0 </span>
                 <span class="bi bi-chevron-right"></span>
               </div>
             </div>
@@ -371,9 +386,11 @@
         </section>
         <section class="row-3">
           <div class="language">
-            <span class="bi bi-command"></span>
-            <span>English</span>
-            <span class="bi bi-chevron-down"></span>
+            <span class="bi bi-translate"></span>
+            <select>
+            <option value="en">English</option>
+            <option value="hi">हिन्दी</option>
+            </select>
           </div>
         </section>
         <section class="row-4">
