@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Semantic Containers</title>
+    <style>
+      /* dl {
+        display: grid;
+        grid-template-columns: 6fr 6fr;
+      } */
+      /* dt {
+        background: cyan;
+        color: white;
+        padding: 10px;
+        position: sticky;
+        top: 0px;
+        margin-bottom: 5px;
+      }
+      dd {
+        margin-bottom: 5px;
+      }
+      dl {
+        width: 200px;
+      } */
+
+      body {
+        background: rgb(52, 52, 52);
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        gap: 50px;
+      }
+
+      /*  ul li {
+        background-image: url("images/boy.png");
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-size: 28px 28px;
+        padding-left: 44px;
+        font-size: 32px;
+        line-height: 1.2;
+      } */
+
+      li {
+        width: 50px;
+        height: 50px;
+        background: green;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        box-shadow: 2px 2px rgb(3, 86, 3);
+      }
+      li::after {
+        content: "";
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        width: 60px;
+        height: 4px;
+        background: green;
+        transform: translateY(-50%);
+      }
+      li:nth-child(3)::after {
+        background: rgb(253, 254, 253);
+        box-shadow: 2px 2px gray;
+      }
+      li:last-child {
+        background: white;
+        color: green;
+        border: 1px solid gray;
+        box-shadow: 2px 2px gray;
+      }
+      li:last-child::after {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <details>
+      <summary>Fruit</summary>
+      <details>
+        <summary>Item-1</summary>
+        <ul>
+          <li>Banana</li>
+          <li>Orange</li>
+          <li>WaterMillon</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Item-2</summary>
+        <ul>
+          <li>Dragon food</li>
+          <li>licchi</li>
+          <li>grapes></li>
+        </ul>
+      </details>
+    </details>
+
+    <fieldset>
+      <legend>About Lorem</legend>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, architecto!
+      Aut dolorem eius ut nihil cupiditate, necessitatibus laboriosam eaque
+      fuga.
+    </fieldset> -->
+
+    <!-- <dl>
+      <dt>Animal</dt>
+      <dd>Tiger is national Animaal</dd>
+      <dt>Animal</dt>
+      <dd>Tiger is national Animaal</dd>
+      <dt>Animal</dt>
+      <dd>Tiger is national Animaal</dd>
+    </dl> -->
+
+    <!-- <dl>
+      <dt>Electronics</dt>
+      <dd>Televisions</dd>
+      <dd>Mobiles</dd>
+      <dd>Watches</dd>
+      <dd>Televisions</dd>
+      <dd>Mobiles</dd>
+      <dd>Watches</dd>
+      <dd>Televisions</dd>
+      <dd>Mobiles</dd>
+      <dd>Watches</dd>
+      <dd>Televisions</dd>
+      <dd>Mobiles</dd>
+      <dd>Watches</dd>
+      <dd>Televisions</dd>
+      <dd>Mobiles</dd>
+      <dd>Watches</dd>
+      <dd>Televisions</dd>
+      <dd>Mobiles</dd>
+      <dd>Watches</dd>
+      <dd>Televisions</dd>
+      <dd>Mobiles</dd>
+      <dd>Watches</dd>
+      <dd>Televisions</dd>
+      <dd>Mobiles</dd>
+      <dd>Watches</dd>
+      <dd>Televisions</dd>
+      <dd>Mobiles</dd>
+      <dd>Watches</dd>
+      <dd>Televisions</dd>
+      <dd>Mobiles</dd>
+      <dd>Watches</dd>
+      <dt>Fashion</dt>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dt>Dress</dt>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+      <dd>Kids</dd>
+      <dd>Women</dd>
+      <dd>Men</dd>
+    </dl> -->
+
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+  </body>
+</html>
