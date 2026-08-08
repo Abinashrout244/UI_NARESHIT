@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        display: grid;
+        grid-template-columns: 2fr 10fr;
+        height: 100vh;
+      }
+      .links {
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+        margin-bottom: 30px;
+        padding-top: 50px;
+      }
+      .links a {
+        text-decoration: none;
+        margin-bottom: 10px;
+      }
+      .boxes {
+        overflow-y: auto;
+      }
+      /* .box:target {
+        background-color: black;
+        color: white;
+      }
+      .boxes {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+      }
+      .box {
+        width: 200px;
+        height: 200px;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid black;
+        color: black;
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="links">
+        <a href="#box-1">HTML</a>
+        <a href="#box-2">CSS</a>
+        <a href="#box-3">JS</a>
+      </div>
+      <!-- <div class="boxes">
+        <div class="box" id="box-1">
+          <h2>HTML</h2>
+          <p>Creating Structure.</p>
+        </div>
+        <div class="box" id="box-2">
+          <h2>CSS</h2>
+          <p>styling The Structure.</p>
+        </div>
+        <div class="box" id="box-3">
+          <h2>JAVASCRIPT</h2>
+          <p>Add Functionality to the Structure.</p>
+        </div>
+      </div> -->
+
+      <div class="boxes">
+        <div id="box-1">
+          <h1>HTML</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque est
+            totam quibusdam porro minus ex! Necessitatibus labore libero impedit
+            exercitationem odit nihil, officiis velit ducimus vero sapiente esse
+            id totam fuga dolorum? Molestiae sequi, quae sapiente omnis incidunt
+            obcaecati cumque hic natus magni! Nam hic, delectus culpa nulla
+            obcaecati sit.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque est
+            totam quibusdam porro minus ex! Necessitatibus labore libero impedit
+            exercitationem odit nihil, officiis velit ducimus vero sapiente esse
+            id totam fuga dolorum? Molestiae sequi, quae sapiente omnis incidunt
+            obcaecati cumque hic natus magni! Nam hic, delectus culpa nulla
+            obcaecati sit.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque est
+            totam quibusdam porro minus ex! Necessitatibus labore libero impedit
+            exercitationem odit nihil, officiis velit ducimus vero sapiente esse
+            id totam fuga dolorum? Molestiae sequi, quae sapiente omnis incidunt
+            obcaecati cumque hic natus magni! Nam hic, delectus culpa nulla
+            obcaecati sit.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque est
+            totam quibusdam porro minus ex! Necessitatibus labore libero impedit
+            exercitationem odit nihil, officiis velit ducimus vero sapiente esse
+            id totam fuga dolorum? Molestiae sequi, quae sapiente omnis incidunt
+            obcaecati cumque hic natus magni! Nam hic, delectus culpa nulla
+            obcaecati sit.
+          </p>
+        </div>
+        <div id="box-2">
+          <h1>CSS</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque est
+            totam quibusdam porro minus ex! Necessitatibus labore libero impedit
+            exercitationem odit nihil, officiis velit ducimus vero sapiente esse
+            id totam fuga dolorum? Molestiae sequi, quae sapiente omnis incidunt
+            obcaecati cumque hic natus magni! Nam hic, delectus culpa nulla
+            obcaecati sit.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque est
+            totam quibusdam porro minus ex! Necessitatibus labore libero impedit
+            exercitationem odit nihil, officiis velit ducimus vero sapiente esse
+            id totam fuga dolorum? Molestiae sequi, quae sapiente omnis incidunt
+            obcaecati cumque hic natus magni! Nam hic, delectus culpa nulla
+            obcaecati sit.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque est
+            totam quibusdam porro minus ex! Necessitatibus labore libero impedit
+            exercitationem odit nihil, officiis velit ducimus vero sapiente esse
+            id totam fuga dolorum? Molestiae sequi, quae sapiente omnis incidunt
+            obcaecati cumque hic natus magni! Nam hic, delectus culpa nulla
+            obcaecati sit.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque est
+            totam quibusdam porro minus ex! Necessitatibus labore libero impedit
+            exercitationem odit nihil, officiis velit ducimus vero sapiente esse
+            id totam fuga dolorum? Molestiae sequi, quae sapiente omnis incidunt
+            obcaecati cumque hic natus magni! Nam hic, delectus culpa nulla
+            obcaecati sit.
+          </p>
+        </div>
+        <div id="box-3">
+          <h1>JAVA SCRIPT</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque est
+            totam quibusdam porro minus ex! Necessitatibus labore libero impedit
+            exercitationem odit nihil, officiis velit ducimus vero sapiente esse
+            id totam fuga dolorum? Molestiae sequi, quae sapiente omnis incidunt
+            obcaecati cumque hic natus magni! Nam hic, delectus culpa nulla
+            obcaecati sit.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque est
+            totam quibusdam porro minus ex! Necessitatibus labore libero impedit
+            exercitationem odit nihil, officiis velit ducimus vero sapiente esse
+            id totam fuga dolorum? Molestiae sequi, quae sapiente omnis incidunt
+            obcaecati cumque hic natus magni! Nam hic, delectus culpa nulla
+            obcaecati sit.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque est
+            totam quibusdam porro minus ex! Necessitatibus labore libero impedit
+            exercitationem odit nihil, officiis velit ducimus vero sapiente esse
+            id totam fuga dolorum? Molestiae sequi, quae sapiente omnis incidunt
+            obcaecati cumque hic natus magni! Nam hic, delectus culpa nulla
+            obcaecati sit.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque est
+            totam quibusdam porro minus ex! Necessitatibus labore libero impedit
+            exercitationem odit nihil, officiis velit ducimus vero sapiente esse
+            id totam fuga dolorum? Molestiae sequi, quae sapiente omnis incidunt
+            obcaecati cumque hic natus magni! Nam hic, delectus culpa nulla
+            obcaecati sit.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
