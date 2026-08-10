@@ -3,35 +3,893 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Table's in HTML</title>
+    <title>Movie List Table</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #0b1712;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        color: #e1e1e1;
+        min-height: 100vh;
+      }
+
+      .layout {
+        display: flex;
+        width: 100vw;
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        width: 260px;
+        flex-shrink: 0;
+        height: 100vh;
+        background-color: #161515;
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 24px 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.4);
+        position: sticky;
+        top: 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 8px 32px 8px;
+      }
+
+      .brand-logo {
+        width: 32px;
+        height: 32px;
+        background-color: #242222;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #63ff6b;
+        font-size: 16px;
+      }
+
+      .brand-name {
+        color: #f1dfd3;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.3px;
+      }
+
+      .nav-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 16px;
+        border-radius: 10px;
+        color: #e3c4b1;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+
+      .nav-link i {
+        font-size: 18px;
+      }
+
+      .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: #ffffff;
+      }
+
+      .nav-link.active {
+        background-color: #63ff6b;
+        color: #0d0d0d;
+        font-weight: 600;
+      }
+
+      .nav-link.active i {
+        color: #0d0d0d;
+      }
+
+      .user-profile {
+        background-color: #242222;
+        border-radius: 12px;
+        padding: 12px 14px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .user-avatar {
+        width: 38px;
+        height: 38px;
+        background-color: #fca889;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #1a1a1a;
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+
+      .user-info {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .user-name {
+        color: #f1dfd3;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .user-email {
+        color: #c9b0a1;
+        font-size: 11px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* Header Section  */
+      .page-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+      }
+
+      .header-text h1 {
+        font-size: 32px;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: -0.5px;
+        margin-bottom: 6px;
+      }
+
+      .header-text p {
+        font-size: 14px;
+        color: #63ff6b;
+        font-weight: 400;
+      }
+
+      .btn-primary {
+        background-color: #45ff5b;
+        color: #1a1a1a;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .btn-primary i {
+        font-size: 18px;
+      }
+
+      .btn-primary:hover {
+        background-color: #9afb84;
+        transform: translateY(-1px);
+      }
+
+      .toolbar {
+        background-color: #1a1919;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        gap: 16px;
+      }
+
+      .toolbar-left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex: 1;
+      }
+
+      .search-box {
+        position: relative;
+        width: 320px;
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #888888;
+        font-size: 14px;
+      }
+
+      .search-box input {
+        width: 100%;
+        background-color: #282626;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        padding: 9px 12px 9px 36px;
+        color: #e1e1e1;
+        font-size: 13px;
+        outline: none;
+        transition: border-color 0.2s ease;
+      }
+
+      .search-box input::placeholder {
+        color: #777777;
+      }
+
+      .search-box input:focus {
+        border-color: #63ff6b;
+      }
+
+      .filter-dropdowns {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .filter-select {
+        background-color: #211f1f;
+        border: 1px solid #33302f;
+        color: rgb(240, 235, 235);
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 500;
+        outline: none;
+        cursor: pointer;
+        transition: border-color 0.2s ease;
+      }
+
+      .filter-select:hover,
+      .filter-select:focus {
+        border-color: #63ff6b;
+      }
+
+      .toolbar-right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .showing-count {
+        font-size: 13px;
+        color: rgb(248, 248, 248);
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .nav-arrows {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .arrow-btn {
+        background-color: #211f1f;
+        border: 1px solid #33302f;
+        color: #e1e1e1;
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .arrow-btn:hover:not(:disabled) {
+        background-color: #2e2b2a;
+        border-color: #63ff6b;
+      }
+
+      .arrow-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+
+      .main-content {
+        flex: 1;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .table-container {
+        width: 100%;
+        background-color: #1a1a1a;
+        border-radius: 12px;
+        border: 1px solid #2a2a2a;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+      }
+
+      thead {
+        background-color: #1f1f1f;
+        border-bottom: 1px solid #2a2a2a;
+      }
+
+      th {
+        padding: 16px 20px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #63ff6b;
+        text-shadow: 0 0 8px rgba(99, 255, 107, 0.25);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      tbody tr {
+        border-bottom: 1px solid #262626;
+        transition: background-color 0.2s ease;
+      }
+
+      tbody tr:last-child {
+        border-bottom: none;
+      }
+
+      tbody tr:hover {
+        background-color: #222222;
+      }
+
+      td {
+        padding: 16px 20px;
+        font-size: 14px;
+        color: #cccccc;
+        vertical-align: middle;
+      }
+
+      .poster {
+        width: 70px;
+        padding-right: 0;
+      }
+
+      .image {
+        width: 50px;
+        height: 70px;
+        border-radius: 6px;
+        overflow: hidden;
+        border: 1px solid #333;
+      }
+
+      .image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .director {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #ffffff;
+      }
+
+      .name {
+        font-size: 11px;
+        color: #97f09b;
+        text-shadow: 0 0 8px rgba(99, 255, 107, 0.25);
+      }
+
+      .rating {
+        color: #ffb400;
+        display: flex;
+        gap: 2px;
+        font-size: 14px;
+      }
+
+      .rating .bi-star {
+        color: #444444;
+      }
+
+      .btn-status {
+        background-color: rgba(0, 150, 136, 0.15);
+        color: #26a69a;
+        border: 1px solid rgba(38, 166, 154, 0.3);
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        text-transform: uppercase;
+      }
+
+      .action {
+        display: none;
+        gap: 12px;
+      }
+
+      tbody tr:hover .action {
+        display: flex;
+      }
+
+      .action-btn {
+        background: transparent;
+        border: none;
+        color: #777777;
+        font-size: 16px;
+        cursor: pointer;
+        transition: color 0.2s ease;
+      }
+
+      .action-btn.delete:hover {
+        color: #ff5252;
+      }
+
+      .action-btn.edit:hover {
+        color: #40c4ff;
+      }
+
+      /* Footer Styling */
+      tfoot td {
+        padding: 12px 20px;
+        background-color: #161515;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .pagination-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .items-page {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #63ff6b;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .select {
+        background-color: #262322;
+        color: #a7ffac;
+        border: 1px solid #363230;
+        border-radius: 4px;
+        padding: 5px 8px;
+        font-size: 13px;
+        outline: none;
+        cursor: pointer;
+        transition: border-color 0.2s ease;
+      }
+
+      .select:hover,
+      .select:focus {
+        border-color: #63ff6b;
+      }
+
+      .pagination-controls {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .page-btn {
+        background: transparent;
+        border: none;
+        color: #63ff6b;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 6px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 32px;
+        height: 32px;
+      }
+
+      .page-btn:hover {
+        background-color: rgba(112, 238, 98, 0.1);
+      }
+
+      .page-btn.disabled {
+        color: #55504c;
+        cursor: not-allowed;
+      }
+
+      .page-btn.disabled:hover {
+        background: transparent;
+      }
+
+      .page-btn.active {
+        background-color: rgba(112, 238, 98, 0.1);
+        border: 1px solid #14ff2b;
+        color: #63ff6b;
+      }
+
+      .ellipsis {
+        color: #63ff6b;
+        padding: 0 4px;
+        font-size: 14px;
+      }
+    </style>
   </head>
   <body>
-    <table border="1" cellspacing="5" cellpadding="5" width="100%">
-      <thead>
-        <tr>
-          <th>NAME</th>
-          <th>CONTACT</th>
-        </tr>
-      </thead>
-      <tbody align="center">
-        <tr height="50">
-          <td width="100">hii</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td>helllo</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="2 ">footer</td>
-        </tr>
-      </tfoot>
-    </table>
+    <div class="layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-top">
+          <div class="brand">
+            <div class="brand-logo">
+              <i class="bi bi-gear-wide-connected"></i>
+            </div>
+            <span class="brand-name">CineGear</span>
+          </div>
+
+          <nav>
+            <ul class="nav-list">
+              <li>
+                <a href="#" class="nav-link">
+                  <i class="bi bi-grid-1x2"></i>
+                  <span>Dashboard</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link active">
+                  <i class="bi bi-film"></i>
+                  <span>Movies</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link">
+                  <i class="bi bi-ticket-perforated"></i>
+                  <span>Bookings</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link">
+                  <i class="bi bi-masks"></i>
+                  <span>Cinemas</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link">
+                  <i class="bi bi-gear"></i>
+                  <span>Settings</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="user-profile">
+          <div class="user-avatar">
+            <i class="bi bi-person"></i>
+          </div>
+          <div class="user-info">
+            <span class="user-name">Admin User</span>
+            <span class="user-email">admin@cinegear.io</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Section  -->
+      <main class="main-content">
+        <div class="page-header">
+          <div class="header-text">
+            <h1>Movie Catalog</h1>
+            <p>Manage your cinematic inventory, screenings, and metadata.</p>
+          </div>
+          <button class="btn-primary">
+            <i class="bi bi-plus"></i>
+            <span>Add New Movie</span>
+          </button>
+        </div>
+
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <div class="search-box">
+              <i class="bi bi-search search-icon"></i>
+              <input
+                type="text"
+                placeholder="Search by title, director, or cast..."
+              />
+            </div>
+
+            <div class="filter-dropdowns">
+              <select class="filter-select">
+                <option value="" disabled selected>Genre</option>
+                <option value="action">Action</option>
+                <option value="drama">Drama</option>
+                <option value="biography">Biography</option>
+              </select>
+
+              <select class="filter-select">
+                <option value="" disabled selected>Status</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+
+              <select class="filter-select">
+                <option value="" disabled selected>Rating</option>
+                <option value="5">5 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="3">3 Stars</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="toolbar-right">
+            <span class="showing-count">Showing 1-10 of 142</span>
+            <div class="nav-arrows">
+              <button class="arrow-btn" disabled>
+                <i class="bi bi-chevron-left"></i>
+              </button>
+              <button class="arrow-btn">
+                <i class="bi bi-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th class="poster"></th>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Release Date</th>
+                <th>Duration</th>
+                <th>Rating</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="poster">
+                  <div class="image">
+                    <img
+                      src="../public/images/image.png"
+                      alt="Oppenheimer Poster"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <div class="director">
+                    <span class="title">Oppenheimer</span>
+                    <span class="name">Dir: Christopher Nolan</span>
+                  </div>
+                </td>
+                <td>Biography, Drama</td>
+                <td>Jul 21, 2023</td>
+                <td>180 min</td>
+                <td>
+                  <div class="rating">
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star"></span>
+                  </div>
+                </td>
+                <td>
+                  <button class="btn-status">Active</button>
+                </td>
+                <td>
+                  <div class="action">
+                    <button class="action-btn edit">
+                      <span class="bi bi-pencil-square"></span>
+                    </button>
+                    <button class="action-btn delete">
+                      <span class="bi bi-trash"></span>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="poster">
+                  <div class="image">
+                    <img
+                      src="../public/images/dune.png"
+                      alt="Oppenheimer Poster"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <div class="director">
+                    <span class="title">Dune: Part Two</span>
+                    <span class="name">Dir: Denis Villeneuve</span>
+                  </div>
+                </td>
+                <td>Action, Sci-Fi</td>
+                <td>Mar 1, 2024</td>
+                <td>166 min</td>
+                <td>
+                  <div class="rating">
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star"></span>
+                  </div>
+                </td>
+                <td>
+                  <button class="btn-status">Active</button>
+                </td>
+                <td>
+                  <div class="action">
+                    <button class="action-btn edit">
+                      <span class="bi bi-pencil-square"></span>
+                    </button>
+                    <button class="action-btn delete">
+                      <span class="bi bi-trash"></span>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="poster">
+                  <div class="image">
+                    <img
+                      src="../public/images/killer.png"
+                      alt="Oppenheimer Poster"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <div class="director">
+                    <span class="title">The Killer</span>
+                    <span class="name">Dir: David Fincher</span>
+                  </div>
+                </td>
+                <td>Action, Thriller</td>
+                <td>Oct 27, 2023</td>
+                <td>118 min</td>
+                <td>
+                  <div class="rating">
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star"></span>
+                  </div>
+                </td>
+                <td>
+                  <button class="btn-status">Active</button>
+                </td>
+                <td>
+                  <div class="action">
+                    <button class="action-btn edit">
+                      <span class="bi bi-pencil-square"></span>
+                    </button>
+                    <button class="action-btn delete">
+                      <span class="bi bi-trash"></span>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <!-- <tr>
+                <td class="poster">
+                  <div class="image">
+                    <img
+                      src="../public/images/spectrum.png"
+                      alt="Oppenheimer Poster"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <div class="director">
+                    <span class="title"
+                      >Spider-Man: Across the Spider-Verse</span
+                    >
+                    <span class="name"
+                      >Dir: J. Kemp, K. Powers, J. Dos Santos</span
+                    >
+                  </div>
+                </td>
+                <td>Animation, Action</td>
+                <td>Jun 2, 20233</td>
+                <td>140 min</td>
+                <td>
+                  <div class="rating">
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star"></span>
+                  </div>
+                </td>
+                <td>
+                  <button class="btn-status">Active</button>
+                </td>
+                <td>
+                  <div class="action">
+                    <button class="action-btn edit">
+                      <span class="bi bi-pencil-square"></span>
+                    </button>
+                    <button class="action-btn delete">
+                      <span class="bi bi-trash"></span>
+                    </button>
+                  </div>
+                </td>
+              </tr> -->
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="8">
+                  <div class="pagination-container">
+                    <div class="items-page">
+                      <label for="items">Items per page:</label>
+                      <select id="items" class="select">
+                        <option value="10" selected>10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                      </select>
+                    </div>
+
+                    <div class="pagination-controls">
+                      <button class="page-btn disabled">Previous</button>
+                      <button class="page-btn active">1</button>
+                      <button class="page-btn">2</button>
+                      <button class="page-btn">3</button>
+                      <span class="ellipsis">...</span>
+                      <button class="page-btn">15</button>
+                      <button class="page-btn">Next</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </main>
+    </div>
   </body>
 </html>
