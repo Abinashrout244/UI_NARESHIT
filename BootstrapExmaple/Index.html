@@ -21,7 +21,7 @@
       <div
         class="d-flex fs-2 mt-1 text-dark align-items-center justify-content-center"
       >
-        <p class="bi bi-bag-fill me-2 text-success "></p>
+        <p class="bi bi-bag-fill me-2 text-success" data-bs-target="#sideBar" data-bs-toggle="offcanvas"></p>
         <p class="fw-bold">Shopping</p>
       </div>
       <nav class="d-flex align-items-center text-black fw-medium">
@@ -43,60 +43,39 @@
       </div>
 
       <div class="d-flex align-items-center gap-3">
-  
-  <button
-    class="btn btn-warning rounded-pill fw-bold position-relative d-flex align-items-center gap-2 px-3"
-  >
-    <span class="bi bi-cart3 fs-5"></span>
-    <span>Cart</span>
+        <button
+          class="btn btn-warning rounded-pill fw-bold position-relative d-flex align-items-center gap-2 px-3"
+        >
+          <span class="bi bi-cart3 fs-5"></span>
+          <span>Cart</span>
 
-    <span
-      class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle"
-    >
-      2
-    </span>
-  </button>
+          <span
+            class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle"
+          >
+            2
+          </span>
+        </button>
 
-  <div class="d-flex gap-2">
-    <button class="btn btn-primary fw-bold">
-      Sign In
-    </button>
+        <div class="d-flex gap-2">
+          <button
+            data-bs-toggle="modal"
+            data-bs-target="#login"
+            class="btn btn-primary fw-bold"
+          >
+          Login
+          </button>
 
-    <button class="btn btn-info fw-bold">
-      Sign Out
-    </button>
-  </div>
-
-</div>
+          <button class="btn btn-info fw-bold" data-bs-toggle="modal" data-bs-target="#register">Register</button>
+        </div>
+      </div>
     </header>
 
-    <section class="h-100  overflow-scroll" style="margin-top: 100px;">
-      <div class=" mb-5 px-5">
-   <div class="d-flex justify-content-between align-items-center">
-       <ul class="list-unstyled breadcrumb" style="--bs-breadcrumb-divider:'>' ">
-        <li class="breadcrumb-item text-primary">item-1</li>
-        <li class="breadcrumb-item fw-bold text-success">item-2</li>
-        <li class="breadcrumb-item text-danger">item-3</li>
-        <li class="breadcrumb-item text-info">item-4</li>
-        <li class="breadcrumb-item text-warning">item-5</li>
-     
-      </ul>
-       <ul class="list-unstyled list-group-horizontal list-group">
-        <li class="list-group-item list-group-item-info">item-1</li>
-        <li class="list-group-item list-group-item-primary">item-2</li>
-        <li class="list-group-item list-group-item-denger">item-3</li>
-        <li class="list-group-item list-group-item-warning">item-4</li>
-        <li class="list-group-item list-group-item-success">item-5</li>
-     
-      </ul>
-   </div>
-      </div>
-     <div class="modal">
-      <div class="modal-dialog">
-    <section class="d-flex justify-content-center modal-content"> 
-        <form class="shadow-lg px-3 py-4 w-25 rounded-4">
-        <h2 class="bi bi-person text-center mb-3">Login</h2>
-        <div class="mb-2">
+      <div class="modal" id="login">
+        <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable"  style="max-width: 400px;">
+        <section class="modal-content"> 
+        <form class="shadow-lg  px-3 py-4  rounded-4 ">
+        <div class="modal-header"><h2 class="bi bi-person text-center mb-3">Login</h2></div>
+       <div class="modal-body"> <div class="mb-2">
           <label class="form-label fw-bold">UserName</label>
           <div class="form-floating">
             <input type="text" placeholder="userName" id="floating" class="form-control" />
@@ -138,68 +117,296 @@
           <div class="form-switch">
             <input type="checkbox" class="form-check-input" /> <span>Yes</span>
           </div>
-        </div>
+        </div></div>
 
-        <div>
-            <button class="btn btn-primary w-100" >SUBMIT</button>
+        <div class="modal-footer">
+            <button class="btn btn-primary w-100" data-bs-dismiss="modal">SUBMIT</button>
         </div>
         
       </form>
-    </section>
-      </div>
-     </div>
+    </section></div>
+        
       
-   <div class="mt-5 px-5">   <table class="table table-responsive table-bordered table-striped table-hover">
-    <caption class="fw-bold caption-top">User Table</caption>
-        <thead>
-         <tr class="text-center">
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Country</th>
-         </tr>
-        </thead>
-        <tbody>
-         <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          
-         </tr>
-           <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          
-         </tr>
-           <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          
-         </tr>
-           <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          
-         </tr>
-           <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          
-         </tr>
-        </tbody>
-      </table></div>
+      </div>
+     
+      <div class="modal" id="register">
+
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+       style="max-width: 400px;">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Register</h5>
+      </div>
+
+      <div class="modal-body">
+        <form>
+
+          <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-control">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input type="text" class="form-control">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Confirm Password</label>
+            <input type="password" class="form-control">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Country</label>
+            <select class="form-select">
+              <option>Select Country</option>
+              <option>India</option>
+              <option>USA</option>
+              <option>Japan</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Address</label>
+            <textarea class="form-control" rows="4"></textarea>
+          </div>
+
+          <button class="btn btn-primary w-100">
+            REGISTER
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+      </div>
+
+
+    <div class="offcanvas offcanvas-start" id="sideBar">
+     <div class=" min-vh-100 bg-dark text-white ">
+
+    <div class="offcanvas-header bg-dark text-white p-4">
+
+    <div class="d-flex align-items-center gap-3">
+        <div class="bg-primary rounded-circle d-flex
+                    align-items-center justify-content-center"
+             style="width: 50px; height: 50px;">
+
+            <i class="bi bi-person fs-3"></i>
+
+        </div>
+        <div>
+
+            <h5 class="offcanvas-title fw-bold mb-1">
+                Hello, Sign In
+            </h5>
+
+            <small class="text-white-50">
+                Welcome back!
+            </small>
+
+        </div>
+
+    </div>
+    <button
+        type="button"
+        class="btn-close btn-close-white"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close">
+    </button>
+
+</div>
+ <hr class="border-secondary">
+    <ul class="list-unstyled offcanvas-body">
+
+        <li class="mb-2">
+            <a href="#"
+               class="d-flex align-items-center gap-3
+                      text-white text-decoration-none
+                      rounded-3 p-2">
+                <i class="bi bi-star"></i>
+                Best Sellers
+            </a>
+        </li>
+
+        <li class="mb-2">
+            <a href="#"
+               class="d-flex align-items-center gap-3
+                      text-white text-decoration-none
+                      rounded-3 p-2">
+                <i class="bi bi-box-seam"></i>
+                New Releases
+            </a>
+        </li>
+
+        <li class="mb-2">
+            <a href="#"
+               class="d-flex align-items-center gap-3
+                      text-white text-decoration-none
+                      rounded-3 p-2">
+                <i class="bi bi-fire"></i>
+                Trending
+            </a>
+        </li>
+
+        <li class="mb-2">
+            <a href="#"
+               class="d-flex align-items-center gap-3
+                      text-white text-decoration-none
+                      rounded-3 p-2">
+                <i class="bi bi-percent"></i>
+                Today's Deals
+            </a>
+        </li>
+
+        <li class="mb-2">
+            <a href="#"
+               class="d-flex align-items-center gap-3
+                      text-white text-decoration-none
+                      rounded-3 p-2">
+                <i class="bi bi-gift"></i>
+                Gift Ideas
+            </a>
+        </li>
+
+        <li class="mb-2">
+            <a href="#"
+               class="d-flex align-items-center gap-3
+                      text-white text-decoration-none
+                      rounded-3 p-2">
+                <i class="bi bi-heart"></i>
+                Favorites
+            </a>
+        </li>
+
+    </ul>
+
+
+    <hr class="border-secondary">
+    <div class="mt-4">
+
+        <a href="#"
+           class="d-flex align-items-center gap-3
+                  text-white text-decoration-none
+                  rounded-3 p-2 mb-2">
+
+            <i class="bi bi-gear"></i>
+            Settings
+
+        </a>
+
+        <a href="#"
+           class="d-flex align-items-center gap-3
+                  text-danger text-decoration-none
+                  rounded-3 p-2">
+
+            <i class="bi bi-box-arrow-right"></i>
+            Sign Out
+
+        </a>
+
+    </div>
+
+</div>
+    </div>
+
+
+
+
+
+
+
+    <section class="h-100 overflow-y-scroll" style="margin-top: 100px">
+      <div class="mb-5 px-5">
+        <div class="d-flex justify-content-between align-items-center">
+              <ul class="list-unstyled list-group-horizontal list-group">
+            <li class="list-group-item list-group-item-info" data-bs-target="#sideBar" data-bs-toggle="offcanvas"><span class="bi bi-list"></span></li>
+            <li class="list-group-item list-group-item-primary">item-2</li>
+            <li class="list-group-item list-group-item-denger">item-3</li>
+            <li class="list-group-item list-group-item-warning">item-4</li>
+            <li class="list-group-item list-group-item-success">item-5</li>
+          </ul>
+          <ul
+            class="list-unstyled breadcrumb"
+            style="--bs-breadcrumb-divider: &quot;>&quot;"
+          >
+            <li class="breadcrumb-item text-primary">item-1</li>
+            <li class="breadcrumb-item fw-bold text-success">item-2</li>
+            <li class="breadcrumb-item text-danger">item-3</li>
+            <li class="breadcrumb-item text-info">item-4</li>
+            <li class="breadcrumb-item text-warning">item-5</li>
+          </ul>
+      
+        </div>
+      </div>
+
+      <div class="mt-5 px-5">
+        <table
+          class="table table-responsive table-bordered table-striped table-hover"
+        >
+          <caption class="fw-bold caption-top">
+            User Table
+          </caption>
+          <thead>
+            <tr class="text-center">
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Country</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <div class="pb-5 justify-content-end d-flex pe-5">
-       
         <ul class="pagination">
           <li class="page-item"><a class="page-link">&laquo;</a></li>
           <li class="page-item"><a class="page-link">1</a></li>
