@@ -91,33 +91,40 @@
       </ul>
    </div>
       </div>
-       <section class="d-flex justify-content-center"> <form class="shadow-lg px-3 py-4 w-25 rounded-4">
+     <div class="modal">
+      <div class="modal-dialog">
+    <section class="d-flex justify-content-center modal-content"> 
+        <form class="shadow-lg px-3 py-4 w-25 rounded-4">
         <h2 class="bi bi-person text-center mb-3">Login</h2>
         <div class="mb-2">
           <label class="form-label fw-bold">UserName</label>
-          <div>
-            <input type="text" placeholder="userName" class="form-control" />
+          <div class="form-floating">
+            <input type="text" placeholder="userName" id="floating" class="form-control" />
+            <label class="floating">UserName</label>
           </div>
         </div>
         <div class="mb-2">
           <label class="form-label fw-bold">Password</label>
-          <div>
+          <div class="form-floating">
             <input
               type="password"
               placeholder="Password"
               class="form-control"
+              id="userpas"
             />
+            <label id="userpas">password</label>
           </div>
         </div class="mb-2">
         <div class="mb-2">
           <label class="form-label fw-bold">Country</label>
-          <div>
-            <select class="form-select">
+          <div class="form-floating">
+            <select class="form-select" id="selectform">
               <option>Selct Country</option>
               <option>India</option>
               <option>USA</option>
               <option>JAPAN</option>
             </select>
+            <label for="selectform">Chhose Your Won Country</label>
           </div>
         </div>
           <div class="mb-2">
@@ -137,7 +144,10 @@
             <button class="btn btn-primary w-100" >SUBMIT</button>
         </div>
         
-      </form></section>
+      </form>
+    </section>
+      </div>
+     </div>
       
    <div class="mt-5 px-5">   <table class="table table-responsive table-bordered table-striped table-hover">
     <caption class="fw-bold caption-top">User Table</caption>
