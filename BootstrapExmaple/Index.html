@@ -128,8 +128,7 @@
         
       
       </div>
-     
-      <div class="modal" id="register">
+     <div class="modal" id="register">
 
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
        style="max-width: 400px;">
@@ -196,9 +195,7 @@
   </div>
 
       </div>
-
-
-    <div class="offcanvas offcanvas-start" id="sideBar">
+     <div class="offcanvas offcanvas-start" id="sideBar">
      <div class=" min-vh-100 bg-dark text-white ">
 
     <div class="offcanvas-header bg-dark text-white p-4">
@@ -327,15 +324,9 @@
     </div>
 
 
-
-
-
-
-
-    <section class="h-100 overflow-y-scroll" style="margin-top: 100px">
-      <div class="mb-5 px-5">
-        <div class="d-flex justify-content-between align-items-center">
-              <ul class="list-unstyled list-group-horizontal list-group">
+    <div class="mb-5 px-5  ">
+        <div class="d-flex justify-content-between align-items-center position-fixed z-2 start-0 w-100 px-5 py-2 bg-dark">
+            <ul class="list-unstyled list-group-horizontal list-group">
             <li class="list-group-item list-group-item-info" data-bs-target="#sideBar" data-bs-toggle="offcanvas"><span class="bi bi-list"></span></li>
             <li class="list-group-item list-group-item-primary">item-2</li>
             <li class="list-group-item list-group-item-denger">item-3</li>
@@ -344,7 +335,8 @@
           </ul>
           <ul
             class="list-unstyled breadcrumb"
-            style="--bs-breadcrumb-divider: &quot;>&quot;"
+            style="  --bs-breadcrumb-divider: '>';
+        --bs-breadcrumb-divider-color: red; "
           >
             <li class="breadcrumb-item text-primary">item-1</li>
             <li class="breadcrumb-item fw-bold text-success">item-2</li>
@@ -355,6 +347,40 @@
       
         </div>
       </div>
+     <section class="h-100 overflow-scroll" style="margin-top:77px">
+      
+       <div class="carousel slide ps-3 mt-5" id="banner" data-bs-ride="carousel" style="padding-top: 20px;">
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="4000">
+          <img src="../public/images/slide1.jpg" height="400" class="w-100"/>
+        </div>
+          <div class="carousel-item" data-bs-interval="1000">
+          <img src="../public/images/slide2.jpg" height="400" class="w-100" />
+        </div>
+          <div class="carousel-item" data-bs-interval="6000">
+          <img src="../public/images/slide-3.jpg" height="400" class="w-100"/>
+        </div>
+        <div>
+          <div class="carousel-caption d-none d-md-block">
+    <h5>WELCOME TO CAROUSEl</h5>
+    <p>This is ABInash Slide</p>
+  </div>
+          <a href="#" class="carousel-control-prev" data-bs-theme="dark" data-bs-slide="prev" data-bs-target="#banner">
+            <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a href="#" class="carousel-control-next" data-bs-theme="dark" data-bs-slide="next" data-bs-target="#banner">
+            <span class="carousel-control-next-icon"></span>
+          </a>
+
+          <div class="carousel-indicators" data-bs-theme="dark">
+            <button data-bs-slide-to="0" data-bs-target="#banner" class="active" style="width:30px; height:10px; border-radius:100% ;"></button>
+              <button data-bs-slide-to="1" data-bs-target="#banner" style="width:30px; height:10px; border-radius:100% ;" ></button>
+                <button data-bs-slide-to="2" data-bs-target="#banner" style="width:30px; height:10px; border-radius:100% ;"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+      
 
       <div class="mt-5 px-5">
         <table
@@ -417,5 +443,9 @@
         </ul>
       </div>
     </section>
+
+   
+
+    
   </body>
 </html>
