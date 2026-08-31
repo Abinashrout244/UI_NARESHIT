@@ -62,80 +62,107 @@
 }
   </style>
   <body>
-    <header
-      class="d-flex position-fixed z-2 top-0 start-0 end-0 align-items-center p-1 border border-opacity-25 border-black shadow-lg bg-white text-white justify-content-between px-3"
-    >
-      <div
-        class="d-flex fs-2 mt-1 text-dark align-items-center justify-content-center"
-      >
-        <p class="bi bi-bag-fill me-2 text-success" data-bs-target="#sideBar" data-bs-toggle="offcanvas"></p>
-        <p class="fw-bold">Shopping</p>
-      </div>
-      <nav class="d-flex align-items-center text-black fw-medium">
-        <span>HOME</span>
-        <span class="mx-3">ABOUT</span>
-        <span>CONTACT</span>
-        <span class="mx-3">SHOP</span>
-        <span>BLOG</span>
-      </nav>
+<nav class="navbar navbar-expand-lg fixed-top bg-white border-bottom shadow-sm px-3">
+  <div class="container-fluid">
 
-    <div class="input-group w-25">
-  <button
-        class="btn btn-secondary dropdown-toggle"
-        type="button"
-        data-bs-toggle="dropdown"
+    <a href="#" class="navbar-brand fw-bold text-success">
+      <i class="bi bi-bag-fill me-2"></i>
+      Shopping
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <ul class="navbar-nav mx-lg-4">
+        <li class="nav-item">
+          <a class="nav-link active fw-semibold" href="#">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Men</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Women</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Electronics</a>
+        </li>
+      </ul>
+
+      <div class="input-group mx-lg-auto my-3 my-lg-0" style="max-width: 450px;">
+
+        <button
+          class="btn btn-outline-secondary dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
         >
-        ALL
-    </button>
+          ALL
+        </button>
 
-    <ul class="dropdown-menu dropdown-menu-dark">
-        <li>
-            <a class="dropdown-item " href="#">
-                <i class="bi bi-person"></i> Profile
-            </a>
-        </li>
-        <li>
+        <ul class="dropdown-menu">
+          <li>
             <a class="dropdown-item" href="#">
-                <i class="bi bi-gift"></i> Offers
+              <i class="bi bi-person me-2"></i>Profile
             </a>
-        </li>
-        <li>
+          </li>
+
+          <li>
             <a class="dropdown-item" href="#">
-                <i class="bi bi-gear"></i> Settings
+              <i class="bi bi-gift me-2"></i>Offers
             </a>
-        </li>
-        <li>
+          </li>
+
+          <li>
             <a class="dropdown-item" href="#">
-                <i class="bi bi-heart"></i> Favorites
+              <i class="bi bi-gear me-2"></i>Settings
             </a>
-        </li>
+          </li>
 
-        <li><hr class="dropdown-divider"></li>
-
-        <li>
+          <li>
             <a class="dropdown-item" href="#">
-                <i class="bi bi-question-circle"></i> Help
+              <i class="bi bi-heart me-2"></i>Favorites
             </a>
-        </li>
-    </ul>
+          </li>
 
-    <input
-        type="text"
-        placeholder="Search"
-        class="form-control"
-    >
+          <li>
+            <hr class="dropdown-divider">
+          </li>
 
-    <button class="btn btn-warning text-white">
-        <i class="bi bi-search"></i>
-    </button>
+          <li>
+            <a class="dropdown-item" href="#">
+              <i class="bi bi-question-circle me-2"></i>Help
+            </a>
+          </li>
+        </ul>
 
-</div>
+        <input
+          type="text"
+          placeholder="Search products..."
+          class="form-control"
+        >
 
-      <div class="d-flex align-items-center gap-3">
+        <button class="btn btn-warning">
+          <i class="bi bi-search"></i>
+        </button>
+
+      </div>
+
+      <div class="d-flex align-items-center gap-2 ms-lg-4">
+
         <button
           class="btn btn-warning rounded-pill fw-bold position-relative d-flex align-items-center gap-2 px-3"
         >
-          <span class="bi bi-cart3 fs-5"></span>
+          <i class="bi bi-cart3 fs-5"></i>
           <span>Cart</span>
 
           <span
@@ -145,81 +172,159 @@
           </span>
         </button>
 
-        <div class="d-flex gap-2">
-          <button
-            data-bs-toggle="modal"
-            data-bs-target="#login"
-            class="btn btn-primary fw-bold"
-          >
+        <button
+          class="btn btn-primary fw-bold"
+          data-bs-toggle="modal"
+          data-bs-target="#login"
+        >
           Login
+        </button>
+
+        <button
+          class="btn btn-info fw-bold"
+          data-bs-toggle="modal"
+          data-bs-target="#register"
+        >
+          Register
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+</nav>
+
+      <div class="modal fade" id="login">
+    <div
+    class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+    style="max-width: 400px;"
+  >
+    <section class="modal-content">
+
+      <form class="shadow-lg px-3 py-4 rounded-4">
+
+        <div class="modal-header">
+          <h2 class="bi bi-person text-center mb-3">
+            Login
+          </h2>
+
+          <button
+            class="btn btn-close"
+            data-bs-dismiss="modal"
+          ></button>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="mb-2">
+            <label class="form-label fw-bold">
+              UserName
+            </label>
+
+            <div class="form-floating">
+              <input
+                type="text"
+                placeholder="userName"
+                id="floating"
+                class="form-control"
+              />
+
+              <label for="floating">
+                UserName
+              </label>
+            </div>
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label fw-bold">
+              Password
+            </label>
+
+            <div class="form-floating">
+              <input
+                type="password"
+                placeholder="Password"
+                class="form-control"
+                id="userpas"
+              />
+
+              <label for="userpas">
+                Password
+              </label>
+            </div>
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label fw-bold">
+              Country
+            </label>
+
+            <div class="form-floating">
+              <select class="form-select" id="selectform">
+                <option selected>Select Country</option>
+                <option>India</option>
+                <option>USA</option>
+                <option>Japan</option>
+              </select>
+
+              <label for="selectform">
+                Choose Your Country
+              </label>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-check-label fw-bold">
+              Subscribe
+            </label>
+
+            <div class="form-switch">
+              <input
+                type="checkbox"
+                class="form-check-input"
+              >
+              <span>Yes</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer d-block">
+
+          <button
+            class="btn btn-primary w-100 mb-3"
+            data-bs-dismiss="modal"
+          >
+            SUBMIT
           </button>
 
-          <button class="btn btn-info fw-bold" data-bs-toggle="modal" data-bs-target="#register">Register</button>
-        </div>
-      </div>
-    </header>
+          <div class="text-center">
+            <span class="text-secondary">
+              Don't have an account?
+            </span>
 
-      <div class="modal" id="login">
-        <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable"  style="max-width: 400px;">
-        <section class="modal-content"> 
-        <form class="shadow-lg  px-3 py-4  rounded-4 ">
-        <div class="modal-header"><h2 class="bi bi-person text-center mb-3">Login</h2><button class="btn btn-close" data-bs-dismiss="modal"></button></div>
-       <div class="modal-body"> <div class="mb-2">
-          <label class="form-label fw-bold">UserName</label>
-          <div class="form-floating">
-            <input type="text" placeholder="userName" id="floating" class="form-control" />
-            <label class="floating">UserName</label>
+            <button
+              type="button"
+              class="btn btn-link text-decoration-none fw-bold p-0"
+              data-bs-dismiss="modal"
+              data-bs-toggle="modal"
+              data-bs-target="#register"
+            >
+              Register
+            </button>
           </div>
-        </div>
-        <div class="mb-2">
-          <label class="form-label fw-bold">Password</label>
-          <div class="form-floating">
-            <input
-              type="password"
-              placeholder="Password"
-              class="form-control"
-              id="userpas"
-            />
-            <label id="userpas">password</label>
-          </div>
-        </div class="mb-2">
-        <div class="mb-2">
-          <label class="form-label fw-bold">Country</label>
-          <div class="form-floating">
-            <select class="form-select" id="selectform">
-              <option>Selct Country</option>
-              <option>India</option>
-              <option>USA</option>
-              <option>JAPAN</option>
-            </select>
-            <label for="selectform">Chhose Your Won Country</label>
-          </div>
-        </div>
-          <div class="mb-2">
-          <label class="form-label fw-bold">Range</label>
-          <div>
-            <input type="range" min="1" max="5" class="form-range" />
-          </div>
-        </div>
-         <div class="mb-3 ">
-          <label class="form-check-label fw-bold">Subscribe</label>
-          <div class="form-switch">
-            <input type="checkbox" class="form-check-input" /> <span>Yes</span>
-          </div>
-        </div></div>
 
-        <div class="modal-footer">
-            <button class="btn btn-primary w-100" data-bs-dismiss="modal">SUBMIT</button>
         </div>
-        
+
       </form>
-    </section></div>
-        
-      
-      </div>
-     <div class="modal" id="register">
 
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+    </section>
+  </div>
+      </div> 
+     <div class="modal fade" id="register">
+
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
        style="max-width: 400px;">
 
     <div class="modal-content">
@@ -282,10 +387,10 @@
 
     </div>
 
-  </div>
+     </div>
 
       </div>
-     <div class="offcanvas offcanvas-start" id="sideBar">
+        <div class="offcanvas offcanvas-start" id="sideBar">
      <div class=" min-vh-100 bg-dark text-white ">
 
     <div class="offcanvas-header bg-dark text-white p-4">
@@ -411,32 +516,52 @@
     </div>
 
 </div>
-    </div>
+       </div>
 
 
-    <div class="mb-5 px-5  ">
-        <div class="d-flex justify-content-between align-items-center position-fixed z-1 start-0 w-100 px-5 py-2 bg-dark">
-            <ul class="list-unstyled list-group-horizontal list-group">
-            <li class="list-group-item list-group-item-info" data-bs-target="#sideBar" data-bs-toggle="offcanvas"><span class="bi bi-list"></span></li>
-            <li class="list-group-item list-group-item-primary">item-2</li>
-            <li class="list-group-item list-group-item-denger">item-3</li>
-            <li class="list-group-item list-group-item-warning">item-4</li>
-            <li class="list-group-item list-group-item-success">item-5</li>
-          </ul>
-          <ul
-            class="list-unstyled breadcrumb"
-            style="  --bs-breadcrumb-divider: '>';
-        --bs-breadcrumb-divider-color: red; "
-          >
-            <li class="breadcrumb-item text-primary">item-1</li>
-            <li class="breadcrumb-item fw-bold text-success">item-2</li>
-            <li class="breadcrumb-item text-danger">item-3</li>
-            <li class="breadcrumb-item text-info">item-4</li>
-            <li class="breadcrumb-item text-warning">item-5</li>
-          </ul>
-      
-        </div>
-      </div>
+      <div class="px-5 mb-5">
+  <div class="d-flex justify-content-between align-items-center position-fixed start-0 w-100 px-5 py-2 bg-dark z-1"
+       style="top: 56px;">
+
+    <ul class="list-unstyled list-group list-group-horizontal mb-0">
+      <li
+        class="list-group-item list-group-item-info"
+        data-bs-target="#sideBar"
+        data-bs-toggle="offcanvas"
+      >
+        <span class="bi bi-list"></span>
+      </li>
+
+      <li class="list-group-item list-group-item-primary">
+        Men
+      </li>
+
+      <li class="list-group-item list-group-item-danger">
+        Women
+      </li>
+
+      <li class="list-group-item list-group-item-warning">
+        Electronics
+      </li>
+
+      <li class="list-group-item list-group-item-success">
+        Offers
+      </li>
+    </ul>
+
+    <ul
+      class="breadcrumb mb-0"
+      style="--bs-breadcrumb-divider: '>'; --bs-breadcrumb-divider-color: red;"
+    >
+      <li class="breadcrumb-item text-primary">Home</li>
+      <li class="breadcrumb-item fw-bold text-success">Men</li>
+      <li class="breadcrumb-item text-danger">Women</li>
+      <li class="breadcrumb-item text-info">Electronics</li>
+      <li class="breadcrumb-item text-warning">Offers</li>
+    </ul>
+
+  </div>
+</div>
      <section class="h-100 overflow-scroll" style="margin-top:77px">
       
        <div class="carousel slide ps-3 mt-5" id="banner" data-bs-ride="carousel" style="padding-top: 20px;">
@@ -472,125 +597,460 @@
     </div>
       
 
- <div class="d-flex justify-content-evenly pt-5" style="">
 
+   <ul class="nav bg-dark  nav-pills justify-content-center flex align-items-center  mt-5 p-3 rounded-2 w-25 "  style="margin-left: 600px;">
+      <li class="nav-item " >
+        <a  href="#q1" class="nav-link active" data-bs-toggle="tab">Man's</a>
+      </li>
+       <li class="nav-item">
+        <a href="#q2" class="nav-link" data-bs-toggle="tab">Women's</a>
+      </li>
+      <li class="nav-item">
+        <a href="#q3" class="nav-link" data-bs-toggle="tab" >Electronics's</a>
+      </li>
+      </ul>
+    <div class="tab-content " style="margin-bottom: 50px;">
+       <div class="tab-pane active" id="q1">
+  <div class="d-flex justify-content-evenly pt-5">
 
-  <div class="">
-    <div class="card h-100" style="width: 300px;">
-     <div class="position-relative">
-       <img src="../public/images/card1.jpg" class="card-img-top" >
+    <div class="card h-100 shadow-sm" style="width: 300px;">
 
-     </div>
-      <div class="card-body bg-dark text-white">
-        <h5 class="card-title fw-bold">Lizard</h5>
+      <img
+        src="../public/images/mens1.jpg"
+        class="card-img-top"
+        alt="Men's Casual Shirt"
+      >
 
-        <p class="card-text">
-          Lizards are a widespread group of squamate reptiles, with over
-          6,000 species, ranging across all continents except Antarctica.
+      <div class="card-body">
+
+        <span class="badge bg-primary mb-2">
+          NEW
+        </span>
+
+        <h5 class="card-title fw-bold">
+          Men's Casual Shirt
+        </h5>
+
+        <p class="card-text text-secondary">
+          Explore premium shirts, jackets, trousers, and accessories
+          designed for a sharp and confident look.
         </p>
-      </div>
 
-      <div class="card-footer bg-dark">
-        <button class="btn btn-link text-white">SHARE</button>
-        <button class="btn btn-link text-white">LEARN MORE</button>
-      </div>
-    </div>
-  </div>
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span class="fs-4 fw-bold text-dark">
+            ₹999
+          </span>
 
- <div class="">
-    <div class="card h-100" style="width: 300px;">
-      <img src="../public/images/code2.jpg" class="card-img-top">
+          <span class="text-decoration-line-through text-secondary">
+            ₹1,499
+          </span>
 
-      <div class="card-body bg-dark text-white">
-
-        <div class="d-flex align-items-center p-2">
-          <img
-            src="../public/images/profile.png"
-            class="rounded-circle me-3"
-            width="50"
-            height="50"
-            alt="Profile"
-          >
-
-          <div>
-            <div class="fs-5 fw-bold">
-              Title goes here
-            </div>
-
-            <div class="text-secondary">
-              Secondary text
-            </div>
-          </div>
+          <span class="badge bg-success">
+            33% OFF
+          </span>
         </div>
 
-        <p class="card-text">
-          Lizards are a widespread group of squamate reptiles, with over
-          6,000 species, ranging across all continents except Antarctica.
-        </p>
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-primary flex-fill">
+            ADD TO CART
+          </button>
 
-      </div>
+          <button class="btn btn-primary flex-fill">
+            BUY NOW
+          </button>
+        </div>
 
-      <div class="card-footer bg-dark">
-        <button class="btn btn-link text-white">SHARE</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="">
-    <div class="card h-100" style="width: 300px;">
-
-      <img src="../public/images/card3.jpg" class="card-img-top">
-
-      <div class="card-img-overlay text-white">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          This is a wider card with supporting text below.
-        </p>
-      </div>
-
-      <div class="card-body bg-dark text-white">
-        <p class="card-text">
-          Lizards are a widespread group of squamate reptiles, with over
-          6,000 species, ranging across all continents except Antarctica.
-        </p>
-      </div>
-
-      <div class="card-footer bg-dark">
-        <button class="btn btn-link text-white">SHARE</button>
       </div>
 
     </div>
-  </div>
-  <div class="">
-    <div class="card h-100" style="width: 300px;">
 
-      <img src="../public/images/card3.jpg" class="card-img-top">
 
-      <div class="card-img-overlay text-white">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          This is a wider card with supporting text below.
+    <div class="card h-100 shadow-sm" style="width: 300px;">
+
+      <img
+        src="../public/images/mens2.jpg"
+        class="card-img-top"
+        alt="Men's Premium Outfit"
+      >
+
+      <div class="card-body">
+
+        <span class="badge bg-warning text-dark mb-2">
+          BEST SELLER
+        </span>
+
+        <h5 class="card-title fw-bold">
+          Men's Premium Outfit
+        </h5>
+
+     Explore premium shirts, jackets, trousers, and accessories
+          designed for a sharp and confident look.
         </p>
-      </div>
 
-      <div class="card-body bg-dark text-white">
-        <p class="card-text">
-          Lizards are a widespread group of squamate reptiles, with over
-          6,000 species, ranging across all continents except Antarctica.
-        </p>
-      </div>
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span class="fs-4 fw-bold text-dark">
+            ₹1,999
+          </span>
 
-      <div class="card-footer bg-dark">
-        <button class="btn btn-link text-white">SHARE</button>
+          <span class="text-decoration-line-through text-secondary">
+            ₹2,799
+          </span>
+
+          <span class="badge bg-success">
+            29% OFF
+          </span>
+        </div>
+
+
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-primary flex-fill">
+            ADD TO CART
+          </button>
+
+          <button class="btn btn-primary flex-fill">
+            BUY NOW
+          </button>
+        </div>
+
       </div>
 
     </div>
-  </div>
-  
-  
-  
 
+
+    <div class="card h-100 shadow-sm" style="width: 300px;">
+
+      <img
+        src="../public/images/card3.jpg"
+        class="card-img-top"
+        alt="Men's Premium Collection"
+      >
+
+      <div class="card-body">
+
+        <span class="badge bg-dark mb-2">
+          PREMIUM
+        </span>
+
+        <h5 class="card-title fw-bold">
+          Men's Premium Collection
+        </h5>
+
+        <p class="card-text text-secondary">
+          Explore premium shirts, jackets, trousers, and accessories
+          designed for a sharp and confident look.
+        </p>
+
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span class="fs-4 fw-bold text-dark">
+            ₹2,499
+          </span>
+
+          <span class="text-decoration-line-through text-secondary">
+            ₹3,499
+          </span>
+
+          <span class="badge bg-success">
+            29% OFF
+          </span>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-primary flex-fill">
+            ADD TO CART
+          </button>
+
+          <button class="btn btn-primary flex-fill">
+            BUY NOW
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="card h-100 shadow-sm" style="width: 300px;">
+
+      <img
+        src="../public/images/card3.jpg"
+        class="card-img-top"
+        alt="Men's Streetwear"
+      >
+
+      <div class="card-body">
+
+        <span class="badge bg-danger mb-2">
+          TRENDING
+        </span>
+
+        <h5 class="card-title fw-bold">
+          Men's Streetwear
+        </h5>
+
+        <p class="card-text text-secondary">
+         Explore premium shirts, jackets, trousers, and accessories
+          designed for a sharp and confident look.
+        </p>
+
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span class="fs-4 fw-bold text-dark">
+            ₹1,299
+          </span>
+
+          <span class="text-decoration-line-through text-secondary">
+            ₹1,899
+          </span>
+
+          <span class="badge bg-success">
+            32% OFF
+          </span>
+        </div>
+
+       
+
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-primary flex-fill">
+            ADD TO CART
+          </button>
+
+          <button class="btn btn-primary flex-fill">
+            BUY NOW
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
 </div>
+     <div class="tab-pane" id="q2"> 
+    <div class="d-flex justify-content-center align-items-stretch gap-4 pt-5">
+
+    <div class="card h-100 shadow-sm" style="width: 300px;">
+
+      <img
+        src="../public/images/woemns1.jpg"
+        class="card-img-top"
+        alt="Women's Floral Dress"
+      >
+
+      <div class="card-body">
+
+        <span class="badge bg-primary mb-2">
+          NEW
+        </span>
+
+        <h5 class="card-title fw-bold">
+          Women's Floral Dress
+        </h5>
+
+        <p class="card-text text-secondary">
+          Elegant and comfortable floral dress designed for casual
+          outings, summer days, parties, and special occasions.
+        </p>
+
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span class="fs-4 fw-bold text-dark">
+            ₹1,499
+          </span>
+
+          <span class="text-decoration-line-through text-secondary">
+            ₹1,999
+          </span>
+
+          <span class="badge bg-success">
+            25% OFF
+          </span>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-primary flex-fill">
+            ADD TO CART
+          </button>
+
+          <button class="btn btn-primary flex-fill">
+            BUY NOW
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="card h-100 shadow-sm" style="width: 300px;">
+
+      <img
+        src="../public/images/womens2.jpg"
+        class="card-img-top"
+        alt="Women's Party Dress"
+      >
+
+      <div class="card-body">
+
+        <span class="badge bg-warning text-dark mb-2">
+          BEST SELLER
+        </span>
+
+        <h5 class="card-title fw-bold">
+          Women's Party Dress
+        </h5>
+
+        <p class="card-text text-secondary">
+          Stylish party dress with a modern design, soft fabric,
+          and comfortable fit .
+        </p>
+
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span class="fs-4 fw-bold text-dark">
+            ₹1,799
+          </span>
+
+          <span class="text-decoration-line-through text-secondary">
+            ₹2,499
+          </span>
+
+          <span class="badge bg-success">
+            28% OFF
+          </span>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-danger flex-fill">
+            ADD TO CART
+          </button>
+
+          <button class="btn btn-primary flex-fill">
+            BUY NOW
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+     </div>
+        <div class="tab-pane" id="q3">
+        <div class="d-flex justify-content-center gap-5 pt-5">
+
+  <!-- Electronics Card 1 -->
+  <div class="">
+    <div class="card h-100 shadow-sm" style="width: 300px;">
+
+      <img
+        src="../public/images/hp.jpg"
+        class="card-img-top"
+        alt="headphone"
+      >
+
+      <div class="card-body">
+
+        <span class="badge bg-primary mb-2">
+          NEW
+        </span>
+
+        <h5 class="card-title fw-bold">
+          HP Laptop
+        </h5>
+
+        <p class="card-text text-secondary">
+          Powerful performance with a sleek design. Perfect for work,
+          study, coding, and everyday entertainment.
+        </p>
+
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span class="fs-4 fw-bold text-dark">
+            ₹59,999
+          </span>
+
+          <span class="text-decoration-line-through text-secondary">
+            ₹49,999
+          </span>
+
+          <span class="badge bg-success">
+            14% OFF
+          </span>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-primary flex-fill">
+            <i class="bi bi-cart"></i> ADD TO CART
+          </button>
+
+          <button class="btn btn-primary flex-fill">
+            BUY NOW
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Electronics Card 2 -->
+  <div class="">
+    <div class="card h-100 shadow-sm" style="width: 300px;">
+
+      <img
+        src="../public/images/elect1.jpg"
+        class="card-img-top"
+        alt="Wireless Headphones"
+      >
+
+      <div class="card-body">
+
+        <span class="badge bg-warning text-dark mb-2">
+          BEST SELLER
+        </span>
+
+        <h5 class="card-title fw-bold">
+          Sony Wireless Headphones
+        </h5>
+
+        <p class="card-text text-secondary">
+          Enjoy immersive sound with powerful bass, comfortable ear
+          cushions, and long-lasting wireless battery life.
+        </p>
+
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span class="fs-4 fw-bold text-dark">
+            ₹4,999
+          </span>
+
+          <span class="text-decoration-line-through text-secondary">
+            ₹6,499
+          </span>
+
+          <span class="badge bg-success">
+            23% OFF
+          </span>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-primary flex-fill">
+            <i class="bi bi-cart"></i> ADD TO CART
+          </button>
+
+          <button class="btn btn-primary flex-fill">
+            BUY NOW
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+    </div>
+        </div>
+
+    </div>
+
+
+ 
 
       <div class="mt-5 px-5">
         <table
@@ -703,6 +1163,137 @@
 
 
       </div>
+
+
+      <div class="container my-5">
+
+  <div class="row border border-2 rounded-4 shadow-lg overflow-hidden">
+
+    <div class="col-4 p-3 bg-light">
+
+      <div class="list-group" id="list-box">
+
+        <a
+          href="#list-item-1"
+          class="list-group-item list-group-item-action active"
+        >
+          Item-1
+        </a>
+
+        <a
+          href="#list-item-2"
+          class="list-group-item list-group-item-action"
+        >
+          Item-2
+        </a>
+
+        <a
+          href="#list-item-3"
+          class="list-group-item list-group-item-action"
+        >
+          Item-3
+        </a>
+
+        <a
+          href="#list-item-4"
+          class="list-group-item list-group-item-action"
+        >
+          Item-4
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="col-8 p-4">
+
+      <div
+        data-bs-spy="scroll"
+        data-bs-target="#list-box"
+        data-bs-smooth-scroll="true"
+        class=" overflow-auto"
+        style="height: 300px;"
+      >
+
+        <h4 id="list-item-1" class="fw-bold text-primary">
+          Item 1
+        </h4>
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          Deserunt quasi labore dolorum incidunt exercitationem non,
+          dicta ullam asperiores, facere iste quod! Ab incidunt minima
+          eum! Excepturi nemo doloremque aliquid ratione.
+           Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Magni sint quia consectetur optio odit harum quaerat
+          voluptatum nihil enim! Quisquam.
+           Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Magni sint quia consectetur optio odit harum quaerat
+          voluptatum nihil enim! Quisquam.
+
+        </p>
+
+        <h4 id="list-item-2" class="fw-bold text-success">
+          Item 2
+        </h4>
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Officiis quod, natus animi nihil laudantium debitis quae sit
+          nulla, dolores quia doloremque iure voluptate sunt sapiente
+          quas molestiae maxime, nesciunt veritatis.
+           Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Magni sint quia consectetur optio odit harum quaerat
+          voluptatum nihil enim! Quisquam.
+           Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Magni sint quia consectetur optio odit harum quaerat
+          voluptatum nihil enim! Quisquam.
+
+        </p>
+
+        <h4 id="list-item-3" class="fw-bold text-danger">
+          Item 3
+        </h4>
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Magni sint quia consectetur optio odit harum quaerat
+          voluptatum nihil enim! Quisquam.
+           Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Magni sint quia consectetur optio odit harum quaerat
+          voluptatum nihil enim! Quisquam.
+           Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Magni sint quia consectetur optio odit harum quaerat
+          voluptatum nihil enim! Quisquam.
+        </p>
+
+        <h4 id="list-item-4" class="fw-bold text-warning">
+          Item 4
+        </h4>
+
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+          Dicta, rerum voluptatibus. Quaerat amet asperiores
+          voluptatibus temporibus aut doloremque animi magnam!
+           Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Magni sint quia consectetur optio odit harum quaerat
+          voluptatum nihil enim! Quisquam.
+           Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Magni sint quia consectetur optio odit harum quaerat
+          voluptatum nihil enim! Quisquam.
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  
+
+</div>
 
 
     </section>
