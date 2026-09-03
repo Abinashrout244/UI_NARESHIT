@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.css"
+    />
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+  </head>
+  <script type="text/javascript">
+    function bodyLoad() {
+      var result = new URLSearchParams(location.search);
+      var value = result.get("category");
+      document.getElementById("h1").innerHTML = `The Value will be : ${value}`;
+    }
+  </script>
+  <body onload="bodyLoad()">
+    <h1 id="h1"></h1>
+  </body>
+</html>
