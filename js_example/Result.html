@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resukt Page</title>
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.css"
+    />
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+  </head>
+  <script type="text/javascript">
+    function bodyLoad() {
+      var result = new URLSearchParams(location.search);
+      var value1 = result.get("userName");
+      var value2 = result.get("city");
+      document.getElementById("name").innerHTML = value1;
+      document.getElementById("city").innerHTML = value2;
+    }
+  </script>
+  <body class="p-5" onload="bodyLoad()">
+    <table class="table table-bordered table-hover w-25 table-dark">
+      <tr>
+        <td>USERNAME</td>
+        <td id="name"></td>
+      </tr>
+      <tr>
+        <td>CITY</td>
+        <td id="city"></td>
+      </tr>
+    </table>
+    <a href="./Home.html" class="btn btn-danger bi bi-arrow-left">BACK</a>
+  </body>
+</html>

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.css"
+    />
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+  </head>
+
+  <script type="text/javascript">
+    function bodyLoad() {
+      document.getElementById("summry").style.display = "none";
+    }
+
+    function bookClick() {
+      document.getElementById("summry").style.display = "block";
+      document.getElementById("book").style.display = "none";
+
+      document.getElementById("lblMovie").innerHTML =
+        document.getElementById("selctMovie").value;
+      document.getElementById("lblDate").innerHTML =
+        document.getElementById("selctDate").value;
+      document.getElementById("lblCinema").innerHTML =
+        document.getElementById("selctCinema").value;
+      document.getElementById("lblTiming").innerHTML =
+        document.getElementById("selctTiming").value;
+
+      if (document.getElementById("selctMovie").value === "Toxic") {
+        document.getElementById("img").src = "../public/images/card1.jpg";
+      } else {
+        document.getElementById("img").src = "../public/images/card3.jpg";
+      }
+    }
+
+    function modifyClick() {
+      document.getElementById("head").innerHTML = "Modify Your Input";
+      document.getElementById("btn").innerHTML = `SAVE`;
+    }
+  </script>
+  <body onload="bodyLoad()">
+    <div class="p-5 container-fluid">
+      <button
+        class="btn btn-primary btn-lg rounded-pill shadow-sm mb-5"
+        data-bs-toggle="modal"
+        data-bs-target="#open"
+        id="book"
+      >
+        Quick Booking
+      </button>
+
+      <div class="card w-25 p-3 shadow-lg rounded-4 border-0" id="summry">
+        <div class="card-img-top">
+          <img class="w-100 h-100 rounded-3" id="img" />
+        </div>
+        <div class="card-body">
+          <dl class="mt-3">
+            <dt class="fw-bold text-primary">MOVIE NAME</dt>
+            <dd id="lblMovie" class="text-muted"></dd>
+            <dt class="fw-bold text-primary">DATE</dt>
+            <dd id="lblDate" class="text-muted"></dd>
+            <dt class="fw-bold text-primary">CINEMA</dt>
+            <dd id="lblCinema" class="text-muted"></dd>
+            <dt class="fw-bold text-primary">TIMING</dt>
+            <dd id="lblTiming" class="text-muted"></dd>
+          </dl>
+        </div>
+        <div class="card-footer text-center">
+          <button
+            class="btn btn-outline-warning w-100 rounded-pill fw-bold shadow-sm"
+            data-bs-target="#open"
+            data-bs-toggle="modal"
+            onclick="modifyClick()"
+          >
+            MODIFY
+          </button>
+        </div>
+      </div>
+
+      <div class="modal fade py-5" id="open">
+        <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+          <div class="modal-content border-0 shadow-lg rounded-4">
+            <div class="modal-header bg-primary text-white rounded-top-4">
+              <h2 id="head" class="fw-bold">Quick Booking</h2>
+              <button
+                data-bs-dismiss="modal"
+                class="btn btn-close btn-close-white"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div
+                class="d-flex flex-row gap-4 justify-content-between align-items-center"
+              >
+                <select
+                  class="form-select form-select-lg rounded-pill shadow-sm mb-3"
+                  id="selctMovie"
+                >
+                  <option>Toxic</option>
+                  <option>Dooms Day</option>
+                  <option>Spider man Brand New Day</option>
+                </select>
+                <select
+                  class="form-select form-select-lg rounded-pill shadow-sm mb-3"
+                  id="selctDate"
+                >
+                  <option>12-08-2026</option>
+                  <option>10-07-2026</option>
+                </select>
+                <select
+                  class="form-select form-select-lg rounded-pill shadow-sm mb-3"
+                  id="selctCinema"
+                >
+                  <option>Satyam Mahal</option>
+                  <option>Netflix</option>
+                  <option>Hydrabad</option>
+                </select>
+                <select
+                  class="form-select form-select-lg rounded-pill shadow-sm mb-3"
+                  id="selctTiming"
+                >
+                  <option>10:00 PM</option>
+                  <option>8:00 PM</option>
+                  <option>11:00 AM</option>
+                </select>
+                <button
+                  onclick="bookClick()"
+                  class="btn btn-info btn-lg rounded-pill shadow-sm fw-bold"
+                  data-bs-dismiss="modal"
+                  id="btn"
+                >
+                  BOOK
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
