@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Dashboard</title>
+
+    <!-- Bootstrap & Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+
+  <body class="bg-light" onload="LoadMovies()">
+    <!-- Sidebar -->
+    <nav class="col-2 p-3 bg-dark text-white vh-100 position-fixed">
+      <div class="text-center mb-3">
+        <i class="bi bi-film fs-1"></i>
+        <h4 class="fw-bold mt-2">CineDash</h4>
+        <small class="text-secondary">Admin Dashboard</small>
+      </div>
+
+      <div class="mt-4">
+        <input
+          type="text"
+          id="txtMovie"
+          placeholder="New Movie Name"
+          class="form-control mb-2"
+          onkeydown="if (event.key === 'Enter') AddClick();"
+        />
+        <button onclick="AddClick()" class="btn btn-primary w-100">
+          <i class="bi bi-plus-circle"></i> Add Movie
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="col offset-2 p-4">
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h4 class="card-title mb-3">Movies List</h4>
+
+          <!-- Sort Buttons -->
+          <div class="mb-3">
+            <button
+              onclick="SortAsc()"
+              class="btn btn-success me-2"
+              title="Sort A-Z"
+            >
+              <i class="bi bi-sort-alpha-down"></i>
+            </button>
+            <button
+              onclick="SortDesc()"
+              class="btn btn-success"
+              title="Sort Z-A"
+            >
+              <i class="bi bi-sort-alpha-up"></i>
+            </button>
+          </div>
+
+          <!-- Search -->
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              id="txtSearch"
+              placeholder="Search movie..."
+              class="form-control"
+              onkeyup="SearchClick()"
+            />
+          </div>
+
+          <!-- Movie List -->
+          <select class="form-select" size="8" id="lstMovies"></select>
+          <label class="form-label fw-bold mt-2" id="lblCount"></label>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="d-flex gap-2" id="actions">
+        <button onclick="EditClick()" class="btn btn-warning">
+          <i class="bi bi-pen-fill"></i> Edit
+        </button>
+
+        <button onclick="DeleteClick()" class="btn btn-danger">
+          <i class="bi bi-trash-fill"></i> Delete
+        </button>
+
+        <button onclick="ClearClick()" class="btn btn-outline-danger">
+          <i class="bi bi-trash"></i> Clear All
+        </button>
+      </div>
+    </main>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-warning">
+            <h5 class="modal-title">Edit Movie</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <input type="text" class="form-control" id="txtEditMovie" />
+          </div>
+          <div class="modal-footer">
+            <button
+              onclick="SaveClick()"
+              class="btn btn-success"
+              data-bs-dismiss="modal"
+            >
+              Save
+            </button>
+            <button data-bs-dismiss="modal" class="btn btn-secondary">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script placed inside body -->
+    <script>
+      let movies = [];
+      let editModalInstance = null;
+      let activeEditIndex = -1;
+
+      document.addEventListener("DOMContentLoaded", () => {
+        editModalInstance = new bootstrap.Modal(
+          document.getElementById("editModal"),
+        );
+      });
+
+      function LoadMovies(list = movies) {
+        const select = document.getElementById("lstMovies");
+        select.innerHTML = "";
+
+        list.forEach((item) => {
+          const option = document.createElement("option");
+          option.text = item;
+          option.value = item;
+          select.appendChild(option);
+        });
+
+        document.getElementById("lblCount").innerText =
+          `Total movie(s) in list: ${list.length}`;
+
+        document.getElementById("actions").style.display =
+          movies.length === 0 ? "none" : "flex";
+      }
+
+      function AddClick() {
+        const input = document.getElementById("txtMovie");
+        const movie = input.value.trim();
+
+        if (!movie) {
+          alert("Please enter a movie name.");
+          return;
+        }
+
+        const exists = movies.some(
+          (m) => m.toLowerCase() === movie.toLowerCase(),
+        );
+
+        if (exists) {
+          alert(`"${movie}" already exists in the list.`);
+          return;
+        }
+
+        movies.push(movie);
+        input.value = "";
+        LoadMovies();
+      }
+
+      function SortAsc() {
+        movies.sort((a, b) =>
+          a.localeCompare(b, undefined, { sensitivity: "base" }),
+        );
+        LoadMovies();
+      }
+
+      function SortDesc() {
+        movies.sort((a, b) =>
+          b.localeCompare(a, undefined, { sensitivity: "base" }),
+        );
+        LoadMovies();
+      }
+
+      function DeleteClick() {
+        const select = document.getElementById("lstMovies");
+        if (select.selectedIndex === -1) {
+          alert("Please select a movie to delete.");
+          return;
+        }
+
+        const selectedMovie = select.value;
+        if (confirm(`Are you sure you want to delete "${selectedMovie}"?`)) {
+          const index = movies.indexOf(selectedMovie);
+          if (index !== -1) {
+            movies.splice(index, 1);
+            LoadMovies();
+          }
+        }
+      }
+
+      function ClearClick() {
+        if (movies.length === 0) return;
+        if (confirm("Are you sure you want to clear all movies?")) {
+          movies = [];
+          document.getElementById("txtSearch").value = "";
+          LoadMovies();
+        }
+      }
+
+      function EditClick() {
+        const select = document.getElementById("lstMovies");
+        if (select.selectedIndex === -1) {
+          alert("Please select a movie to edit.");
+          return;
+        }
+
+        const selectedMovie = select.value;
+        activeEditIndex = movies.indexOf(selectedMovie);
+
+        document.getElementById("txtEditMovie").value = selectedMovie;
+        editModalInstance.show();
+      }
+
+      function SaveClick() {
+        let selected_movie = document.getElementById("lstMovies").value;
+
+        let modalInput = document.getElementById("txtEditMovie").value;
+
+        let index_pos = movies.indexOf(selected_movie);
+
+        movies[index_pos] = modalInput;
+
+        LoadMovies();
+      }
+      function SearchClick() {
+        const search = document
+          .getElementById("txtSearch")
+          .value.trim()
+          .toLowerCase();
+        if (!search) {
+          LoadMovies();
+          return;
+        }
+
+        const filtered = movies.filter((item) =>
+          item.toLowerCase().includes(search),
+        );
+        LoadMovies(filtered);
+      }
+    </script>
+  </body>
+</html>
