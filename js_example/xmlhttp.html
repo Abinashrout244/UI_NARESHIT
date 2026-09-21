@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XMLhttpRequest</title>
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.css"
+    />
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+    <script>
+      function LoadClick() {
+        const http = new XMLHttpRequest();
+        http.open("GET", "../data/demo.txt", true);
+        http.send();
+
+        http.onreadystatechange = function () {
+          if (http.readyState === 4) {
+            document.querySelector("pre").textContent = http.responseText;
+          }
+        };
+      }
+    </script>
+  </head>
+  <body class="p-5">
+    <button class="btn btn-primary mb-3" onclick="LoadClick()">
+      Show Details
+    </button>
+    <pre></pre>
+  </body>
+</html>
