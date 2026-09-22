@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Weather App</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <script type="text/javascript">
+      function renderIdle() {
+        document.getElementById("mainContainer").innerHTML = `
+          <div class="col-12 col-lg-9 col-xl-7 mx-auto h-100 d-flex align-items-center justify-content-center">
+            <div
+              class="position-relative bg-dark bg-gradient text-light border border-secondary border-4 rounded-4 shadow-lg px-4 py-5 text-center w-100"
+              style="max-width: 480px"
+            >
+              <!-- Corner screws, matches the live device styling -->
+              <span aria-hidden="true" class="position-absolute top-0 start-0 m-2 p-1 rounded-circle bg-secondary bg-gradient border border-dark border-2 shadow-sm d-none d-md-block"></span>
+              <span aria-hidden="true" class="position-absolute top-0 end-0 m-2 p-1 rounded-circle bg-secondary bg-gradient border border-dark border-2 shadow-sm d-none d-md-block"></span>
+              <span aria-hidden="true" class="position-absolute bottom-0 start-0 m-2 p-1 rounded-circle bg-secondary bg-gradient border border-dark border-2 shadow-sm d-none d-md-block"></span>
+              <span aria-hidden="true" class="position-absolute bottom-0 end-0 m-2 p-1 rounded-circle bg-secondary bg-gradient border border-dark border-2 shadow-sm d-none d-md-block"></span>
+
+              <!-- Glass window, no signal -->
+              <div class="p-1 bg-secondary bg-gradient rounded-4 border border-dark border-3 shadow mx-auto" style="max-width: 260px">
+                <div class="position-relative overflow-hidden bg-black text-white rounded-3 border border-dark border-3 py-4 px-3">
+                  <div aria-hidden="true" class="position-absolute top-0 start-0 end-0 p-3 bg-white bg-opacity-10 bg-gradient rounded-bottom-pill pe-none"></div>
+
+                  <div class="d-inline-block rounded-circle bg-secondary bg-gradient border border-dark border-2 p-1 shadow-sm mb-2">
+                    <div class="rounded-circle bg-dark bg-gradient border border-secondary border-2 p-3 d-flex align-items-center justify-content-center" style="width: 90px; height: 90px;">
+                      <span style="font-size: 2.5rem; opacity: 0.85;" class="idle-pulse">🛰️</span>
+                    </div>
+                  </div>
+
+                  <div class="font-monospace text-success small mt-2">
+                    <span id="idleCursor">&gt; awaiting signal_</span>
+                  </div>
+                </div>
+              </div>
+
+              <p class="text-secondary font-monospace small mt-3 mb-0">
+                Search a city above to pull live conditions
+              </p>
+            </div>
+          </div>
+
+          <style>
+            .idle-pulse {
+              display: inline-block;
+              animation: idleFloat 2.4s ease-in-out infinite;
+            }
+            @keyframes idleFloat {
+              0%, 100% { transform: translateY(0px); opacity: 0.85; }
+              50% { transform: translateY(-6px); opacity: 1; }
+            }
+            #idleCursor::after {
+              content: "";
+              display: inline-block;
+              width: 8px;
+              margin-left: 2px;
+              border-bottom: 2px solid currentColor;
+              animation: idleBlink 1s steps(1) infinite;
+            }
+            @keyframes idleBlink {
+              0%, 49% { opacity: 1; }
+              50%, 100% { opacity: 0; }
+            }
+          </style>
+        `;
+      }
+
+      function bodyLoad() {
+        renderIdle();
+      }
+
+      function searchClick() {
+        let input = document.getElementById("cityInput").value;
+        if (!input || !input.trim()) return;
+
+        fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=${input}&units=metric&appid=ba15e27f15fc4b9d4507569e5a235e3b`,
+        )
+          .then((response) => {
+            if (!response.ok) throw new Error("not found");
+            return response.json();
+          })
+          .then((item) => {
+            console.log(item);
+            document.getElementById("mainContainer").innerHTML =
+              `<div class="col-12 col-lg-9 col-xl-7 mx-auto h-100">
+        <!-- ============ DEVICE CASE ============ -->
+
+        <div
+          class="position-relative bg-dark bg-gradient text-light border border-secondary border-4 rounded-4 shadow-lg px-3 py-3 p-md-4"
+        >
+          <!-- Corner screws -->
+          <span
+            aria-hidden="true"
+            class="position-absolute top-0 start-0 m-2 p-1 rounded-circle bg-secondary bg-gradient border border-dark border-2 shadow-sm d-none d-md-block"
+          >
+            <span
+              class="position-absolute top-50 start-0 end-0 translate-middle-y border-top border-dark border-2"
+            ></span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="position-absolute top-0 end-0 m-2 p-1 rounded-circle bg-secondary bg-gradient border border-dark border-2 shadow-sm d-none d-md-block"
+          >
+            <span
+              class="position-absolute top-50 start-0 end-0 translate-middle-y border-top border-dark border-2"
+            ></span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="position-absolute bottom-0 start-0 m-2 p-1 rounded-circle bg-secondary bg-gradient border border-dark border-2 shadow-sm d-none d-md-block"
+          >
+            <span
+              class="position-absolute top-50 start-0 end-0 translate-middle-y border-top border-dark border-2"
+            ></span>
+          </span>
+          <span
+            aria-hidden="true"
+            class="position-absolute bottom-0 end-0 m-2 p-1 rounded-circle bg-secondary bg-gradient border border-dark border-2 shadow-sm d-none d-md-block"
+          >
+            <span
+              class="position-absolute top-50 start-0 end-0 translate-middle-y border-top border-dark border-2"
+            ></span>
+          </span>
+
+          <!-- Top row: location plate + main glass display side by side on md+, stacked on mobile -->
+          <div class="row g-3">
+            <div class="col-12 col-md-5">
+              <!-- LOCATION: engraved plate -->
+              <div class="text-center mb-2">
+                <div
+                  class="d-inline-block bg-secondary bg-gradient text-black rounded-3 border border-dark border-2 shadow-sm px-3 py-1"
+                >
+                  <h2 id="cityName" class="fw-bold fs-5 mb-0">${item?.name}</h2>
+                </div>
+                <p id="weatherDate" class="text-secondary small mt-1 mb-0">
+                  Current Weather
+                </p>
+              </div>
+
+              <!-- ================= MAIN DISPLAY (glass window) ================= -->
+
+              <div
+                class="p-1 bg-secondary bg-gradient rounded-4 border border-dark border-3 shadow"
+              >
+                <div
+                  class="position-relative overflow-hidden bg-black text-white rounded-3 border border-dark border-3 text-center py-3 px-2"
+                >
+                  <!-- Glass reflection -->
+                  <div
+                    aria-hidden="true"
+                    class="position-absolute top-0 start-0 end-0 p-3 bg-white bg-opacity-10 bg-gradient rounded-bottom-pill pe-none"
+                  ></div>
+
+                  <!-- Weather Icon in a chrome porthole -->
+                  <div
+                    class="d-inline-block rounded-circle bg-secondary bg-gradient border border-dark border-2 p-1 shadow-sm mb-1"
+                    data-bs-toggle="tooltip"
+                    title="Current sky condition"
+                  >
+                    <div
+                      class="rounded-circle bg-dark bg-gradient border border-secondary border-2 p-1"
+                    >
+                      <img
+                        id="weatherIcon"
+                        src="https://openweathermap.org/img/wn/${item.weather[0].icon}@4x.png"
+                        width="70"
+                        alt="Weather"
+                        class="d-block"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Temperature: amber readout -->
+                  <h1
+                    id="temperature"
+                    class="display-4 fw-bold font-monospace text-warning mb-1"
+                  >
+                ${item?.main?.temp}°C
+                  </h1>
+
+                  <!-- Description -->
+                  <h6
+                    id="description"
+                    class="text-capitalize text-success mb-1"
+                  >
+                ${item?.weather[0].description}
+                  </h6>
+
+                  <!-- Feels Like -->
+                  <p class="text-secondary small mb-0">
+                    Feels like
+                    <span id="feelsLike" class="text-white fw-semibold"
+                      >${item?.main?.feels_like}°C</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-7">
+              <!-- ================= DIALS ================= -->
+              <div class="row g-2 mb-2">
+                <div class="col-6 col-lg-3">
+                  <div class="ratio ratio-1x1">
+                    <button
+                      type="button"
+                      class="d-flex p-1 rounded-circle bg-secondary bg-gradient border border-dark border-2 shadow-sm"
+                      data-bs-toggle="tooltip"
+                      title="Relative humidity in the air"
+                    >
+                      <span
+                        class="position-relative overflow-hidden flex-fill d-flex flex-column align-items-center justify-content-center rounded-circle bg-black text-white border border-dark border-2 text-center"
+                      >
+                        <span
+                          aria-hidden="true"
+                          class="position-absolute top-0 start-50 translate-middle-x w-50 mt-1 p-1 rounded-pill bg-white bg-opacity-10 pe-none"
+                        ></span>
+                        <span class="fs-6">💧</span>
+                        <small class="text-secondary" style="font-size: 0.6rem"
+                          >Humidity</small
+                        >
+                        <span
+                          id="humidity"
+                          class="fw-bold font-monospace text-info mb-0 small"
+                          >${item?.main?.humidity}%</span
+                        >
+                      </span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="col-6 col-lg-3">
+                  <div class="ratio ratio-1x1">
+                    <button
+                      type="button"
+                      class="d-flex p-1 rounded-circle bg-secondary bg-gradient border border-dark border-2 shadow-sm"
+                      data-bs-toggle="tooltip"
+                      title="Wind speed"
+                    >
+                      <span
+                        class="position-relative overflow-hidden flex-fill d-flex flex-column align-items-center justify-content-center rounded-circle bg-black text-white border border-dark border-2 text-center"
+                      >
+                        <span
+                          aria-hidden="true"
+                          class="position-absolute top-0 start-50 translate-middle-x w-50 mt-1 p-1 rounded-pill bg-white bg-opacity-10 pe-none"
+                        ></span>
+                        <span class="fs-6">💨</span>
+                        <small class="text-secondary" style="font-size: 0.6rem"
+                          >Wind</small
+                        >
+                        <span
+                          id="wind"
+                          class="fw-bold font-monospace text-info mb-0 small"
+                          >${item?.wind?.speed} m/s</span
+                        >
+                      </span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="col-6 col-lg-3">
+                  <div class="ratio ratio-1x1">
+                    <button
+                      type="button"
+                      class="d-flex p-1 rounded-circle bg-secondary bg-gradient border border-dark border-2 shadow-sm"
+                      data-bs-toggle="tooltip"
+                      title="Cloud cover"
+                    >
+                      <span
+                        class="position-relative overflow-hidden flex-fill d-flex flex-column align-items-center justify-content-center rounded-circle bg-black text-white border border-dark border-2 text-center"
+                      >
+                        <span
+                          aria-hidden="true"
+                          class="position-absolute top-0 start-50 translate-middle-x w-50 mt-1 p-1 rounded-pill bg-white bg-opacity-10 pe-none"
+                        ></span>
+                        <span class="fs-6">☁️</span>
+                        <small class="text-secondary" style="font-size: 0.6rem"
+                          >Clouds</small
+                        >
+                        <span
+                          id="clouds"
+                          class="fw-bold font-monospace text-info mb-0 small"
+                          >${item?.clouds?.all}%</span
+                        >
+                      </span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="col-6 col-lg-3">
+                  <div class="ratio ratio-1x1">
+                    <button
+                      type="button"
+                      class="d-flex p-1 rounded-circle bg-secondary bg-gradient border border-dark border-2 shadow-sm"
+                      data-bs-toggle="tooltip"
+                      title="Visibility distance"
+                    >
+                      <span
+                        class="position-relative overflow-hidden flex-fill d-flex flex-column align-items-center justify-content-center rounded-circle bg-black text-white border border-dark border-2 text-center"
+                      >
+                        <span
+                          aria-hidden="true"
+                          class="position-absolute top-0 start-50 translate-middle-x w-50 mt-1 p-1 rounded-pill bg-white bg-opacity-10 pe-none"
+                        ></span>
+                        <span class="fs-6">👁️</span>
+                        <small class="text-secondary" style="font-size: 0.6rem"
+                          >Visibility</small
+                        >
+                        <span
+                          id="visibility"
+                          class="fw-bold font-monospace text-info mb-0 small"
+                          >${item?.visibility / 1000} km</span
+                        >
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ================= TEMPERATURE (glass thermometer tube, animated fill) ================= -->
+              <div
+                class="p-1 bg-secondary bg-gradient rounded-3 border border-dark border-2 shadow-sm mb-2"
+              >
+                <div
+                  class="bg-black text-white rounded-2 border border-dark border-2 p-2"
+                >
+                  <div
+                    class="d-flex justify-content-between align-items-center mb-1"
+                  >
+                    <small class="text-secondary" style="font-size: 0.65rem"
+                      >🌡 Min</small
+                    >
+                    <h6
+                      id="minTemp"
+                      class="fw-bold font-monospace text-info mb-0 small"
+                    >
+                      ${item?.main?.temp_min}°C
+                    </h6>
+                    <h6
+                      id="maxTemp"
+                      class="fw-bold font-monospace text-danger mb-0 small"
+                    >
+                      ${item?.main?.temp_max}°C
+                    </h6>
+                    <small class="text-secondary" style="font-size: 0.65rem"
+                      >Max</small
+                    >
+                  </div>
+                  <div
+                    class="p-1 bg-secondary bg-gradient rounded-pill border border-dark border-1 shadow-sm"
+                  >
+                    <div
+                      class="progress rounded-pill bg-black"
+                      style="height: 8px"
+                    >
+                      <div
+                        id="temperatureBar"
+                        class="progress-bar bg-danger bg-gradient progress-bar-striped progress-bar-animated"
+                        role="progressbar"
+                        style="width: 50%"
+                        aria-valuenow="50"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ================= SUN + DETAILS ================= -->
+              <div class="row g-2">
+                <div class="col-6">
+                  <div
+                    class="p-1 bg-secondary bg-gradient rounded-3 border border-dark border-2 shadow-sm h-100"
+                  >
+                    <div
+                      class="bg-black text-white rounded-2 border border-dark border-2 p-2 h-100"
+                    >
+                      <div class="row text-center g-1">
+                        <div class="col-6 border-end border-secondary">
+                          <div class="small">🌅</div>
+                          <small
+                            class="text-secondary"
+                            style="font-size: 0.6rem"
+                            >Sunrise</small
+                          >
+                          <h6
+                            id="sunrise"
+                            class="fw-bold font-monospace text-warning mb-0 small"
+                          >
+                            ${new Date(item?.sys?.sunrise * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                          </h6>
+                        </div>
+                        <div class="col-6">
+                          <div class="small">🌇</div>
+                          <small
+                            class="text-secondary"
+                            style="font-size: 0.6rem"
+                            >Sunset</small
+                          >
+                          <h6
+                            id="sunset"
+                            class="fw-bold font-monospace text-warning mb-0 small"
+                          >
+                            ${new Date(item?.sys?.sunset * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                          </h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <!-- Details as a collapsible accordion -->
+                  <div class="accordion h-100" id="detailsAccordion">
+                    <div
+                      class="accordion-item bg-secondary bg-gradient border border-dark border-2 rounded-3 shadow-sm h-100 overflow-hidden"
+                    >
+                      <h2 class="accordion-header">
+                        <button
+                          class="accordion-button bg-black text-secondary py-1 px-2 collapsed"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#detailsCollapse"
+                          aria-expanded="true"
+                          aria-controls="detailsCollapse"
+                          style="font-size: 0.65rem"
+                        >
+                          Details
+                        </button>
+                      </h2>
+                      <div
+                        id="detailsCollapse"
+                        class="accordion-collapse collapse show"
+                        data-bs-parent="#detailsAccordion"
+                      >
+                        <div class="accordion-body bg-black p-2">
+                          <ul class="list-group list-group-flush">
+                            <li
+                              class="list-group-item bg-transparent text-secondary border-secondary px-0 py-0 d-flex justify-content-between align-items-center"
+                              style="font-size: 0.65rem"
+                            >
+                              Pressure
+                              <span
+                                id="pressure"
+                                class="font-monospace fw-bold text-info"
+                                >${item?.main.pressure} hPa</span
+                              >
+                            </li>
+                            <li
+                              class="list-group-item bg-transparent text-secondary border-secondary px-0 py-0 d-flex justify-content-between align-items-center"
+                              style="font-size: 0.65rem"
+                            >
+                              Wind Dir
+                              <span
+                                id="windDirection"
+                                class="font-monospace fw-bold text-info"
+                                >${item?.wind.deg}°</span
+                              >
+                            </li>
+                            <li
+                              class="list-group-item bg-transparent text-secondary border-secondary px-0 py-0 d-flex justify-content-between align-items-center"
+                              style="font-size: 0.65rem"
+                            >
+                              Country
+                              <span
+                                id="country"
+                                class="font-monospace fw-bold text-info"
+                                >${item?.sys?.country}</span
+                              >
+                            </li>
+                            <li
+                              class="list-group-item bg-transparent text-secondary border-secondary px-0 py-0 d-flex justify-content-between align-items-center"
+                              style="font-size: 0.65rem"
+                            >
+                              Coords
+                              <span
+                                id="coordinates"
+                                class="font-monospace fw-bold text-info"
+                                >${item?.coord.lat}LAT ${item?.coord.lon}LON</span
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        
+        
+           
+        </div>
+      </div>`;
+
+            const bar = document.getElementById("temperatureBar");
+            if (bar && item?.main) {
+              const { temp, temp_min, temp_max } = item.main;
+              const pct =
+                temp_max === temp_min
+                  ? 50
+                  : Math.max(
+                      0,
+                      Math.min(
+                        100,
+                        ((temp - temp_min) / (temp_max - temp_min)) * 100,
+                      ),
+                    );
+              bar.style.width = pct + "%";
+              bar.setAttribute("aria-valuenow", pct);
+            }
+          })
+          .catch(() => {
+            const toast = new bootstrap.Toast(
+              document.getElementById("errorMessage"),
+            );
+            document.getElementById("errorMessage").classList.remove("d-none");
+            toast.show();
+          });
+      }
+    </script>
+  </head>
+
+  <body
+    onload="bodyLoad()"
+    class="bg-dark text-light vh-100 overflow-hidden d-flex flex-column position-relative"
+  >
+    <div
+      aria-hidden="true"
+      class="position-absolute top-0 start-0 translate-middle bg-warning rounded-circle opacity-25"
+      style="width: 22rem; height: 22rem; filter: blur(70px)"
+    ></div>
+    <div
+      aria-hidden="true"
+      class="position-absolute bottom-0 end-0 translate-middle bg-info rounded-circle opacity-25"
+      style="width: 26rem; height: 26rem; filter: blur(80px)"
+    ></div>
+    <div
+      aria-hidden="true"
+      class="position-absolute top-50 start-50 translate-middle bg-danger rounded-circle opacity-10"
+      style="width: 30rem; height: 30rem; filter: blur(100px)"
+    ></div>
+
+    <nav
+      class="navbar bg-black bg-gradient border-bottom border-secondary border-3 shadow flex-shrink-0 position-relative"
+      data-bs-theme="dark"
+    >
+      <div class="container py-1 gap-2 flex-wrap">
+        <div class="d-flex align-items-center gap-2">
+          <span
+            class="navbar-brand mb-0 me-0 bg-secondary bg-gradient text-black fw-bold fs-6 px-2 py-1 rounded-2 border border-dark border-2 shadow-sm"
+          >
+            ☁ Weather
+          </span>
+
+          <span
+            class="d-none d-sm-flex align-items-center gap-1 text-secondary small"
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="Data streaming live"
+          >
+            <span
+              class="spinner-grow spinner-grow-sm text-success"
+              role="status"
+              style="width: 0.5rem; height: 0.5rem"
+            >
+              <span class="visually-hidden">Live</span>
+            </span>
+            Live
+          </span>
+        </div>
+
+        <form
+          id="searchForm"
+          class="col-12 col-sm-6 col-md-4 order-2 order-sm-3"
+          onsubmit="
+            event.preventDefault();
+            searchClick();
+          "
+        >
+          <div class="input-group input-group-sm shadow-sm">
+            <input
+              id="cityInput"
+              type="text"
+              class="form-control bg-black text-success font-monospace border-secondary border-2"
+              placeholder="Search city..."
+              aria-label="City"
+            />
+            <button
+              class="btn btn-outline-secondary border-2"
+              type="button"
+              id="clearCity"
+              aria-label="Clear"
+              onclick="
+                document.getElementById('cityInput').value = '';
+                renderIdle();
+              "
+            >
+              ✕
+            </button>
+            <button
+              type="button"
+              class="btn btn-warning bg-gradient border-dark border-2 px-2"
+              aria-label="Search"
+              onclick="searchClick()"
+            >
+              🔍
+            </button>
+          </div>
+        </form>
+      </div>
+    </nav>
+
+    <main
+      class="container-fluid flex-grow-1 overflow-auto py-2 py-md-3 position-relative"
+      id="mainContainer"
+    ></main>
+
+    <div
+      id="errorMessage"
+      class="toast align-items-center text-bg-danger border-0 position-fixed bottom-0 end-0 m-3 d-none"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
+      <div class="d-flex">
+        <div class="toast-body fw-bold">
+          City not found. Please try another city.
+        </div>
+        <button
+          type="button"
+          class="btn-close btn-close-white me-2 m-auto"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+          onclick="
+            document.getElementById('errorMessage').classList.add('d-none')
+          "
+        ></button>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
