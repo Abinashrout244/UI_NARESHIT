@@ -330,26 +330,44 @@
 
         <!-- Filter Pill Tabs -->
         <div class="col-lg-5 d-flex justify-content-lg-end flex-wrap gap-2">
-          <button class="pill-filter-btn active" onclick="tabLoad('all')">
+          <button
+            class="pill-filter-btn active"
+            data-category="all"
+            onclick="tabLoad('all')"
+          >
             All
           </button>
-          <button class="pill-filter-btn" onclick="tabLoad('sports')">
-            Sports
+
+          <button
+            class="pill-filter-btn"
+            data-category="men's clothing"
+            onclick="tabLoad(`men's clothing`)"
+          >
+            Men's
           </button>
-          <button class="pill-filter-btn" onclick="tabLoad('clothing')">
-            Clothing
+
+          <button
+            class="pill-filter-btn"
+            data-category="jewelery"
+            onclick="tabLoad('jewelery')"
+          >
+            Jwellery
           </button>
-          <button class="pill-filter-btn" onclick="tabLoad('toys')">
-            Toys
-          </button>
-          <button class="pill-filter-btn" onclick="tabLoad('food')">
-            Food
-          </button>
-          <button class="pill-filter-btn" onclick="tabLoad('electronics')">
+
+          <button
+            class="pill-filter-btn"
+            data-category="electronics"
+            onclick="tabLoad('electronics')"
+          >
             Electronics
           </button>
-          <button class="pill-filter-btn" onclick="tabLoad('home')">
-            Home
+
+          <button
+            class="pill-filter-btn"
+            data-category="women's clothing"
+            onclick="tabLoad(`women's clothing`)"
+          >
+            Women's
           </button>
         </div>
       </div>
@@ -368,16 +386,26 @@
       document.documentElement.style.setProperty("--my", e.clientY + "px");
     }
 
+    let allProducts = [];
+
+    fetch("https://fakestoreapi.com/products")
+      .then((response) => response.json())
+      .then((products) => {
+        allProducts = products;
+
+        BodyLoad(allProducts);
+      });
+
     function searchClick() {
       let input = document.getElementById("search").value.trim().toLowerCase();
-      fetch("../data/info.json")
+      fetch("https://fakestoreapi.com/products")
         .then((response) => {
           return response.json();
         })
         .then((product) => {
           let filteredProducts = product.filter((items) => {
             return (
-              items?.name.toLowerCase().includes(input) ||
+              items?.title.toLowerCase().includes(input) ||
               items?.category.toLowerCase().includes(input)
             );
           });
@@ -386,8 +414,6 @@
             BodyLoad();
             return;
           }
-
-          console.log(filteredProducts);
 
           document.getElementById("productContainer").innerHTML = "";
 
@@ -411,145 +437,13 @@
             return;
           }
 
-          filteredProducts.forEach((item) => {
-            document.getElementById("productContainer").innerHTML += `
-  <div class="col-6 col-md-4 col-lg-3">
-
-    <div class="card glass-card border-0 rounded-4 overflow-hidden h-100">
-
-      <!-- IMAGE -->
-      <div class="position-relative">
-
-        <img
-          src="${item.images[0]}"
-          class="card-img-top"
-          alt="${item.name}"
-          style="height: 170px; object-fit: cover;"
-        />
-
-        <!-- Availability -->
-        <span class="position-absolute top-0 end-0 m-2 badge ${
-          item.isAvailable ? "bg-success" : "bg-danger"
-        }">
-          ${item.isAvailable ? "Available" : "Out of Stock"}
-        </span>
-
-      </div>
-
-
-      <!-- CARD BODY -->
-      <div class="card-body p-3">
-
-        <!-- CATEGORY -->
-        <small class="text-muted">
-          ${item.category}
-        </small>
-
-
-        <!-- TITLE + TAG -->
-        <div class="d-flex justify-content-between align-items-center mt-1">
-
-          <h6 class="fw-bold mb-0 text-truncate">
-            ${item.name}
-          </h6>
-
-          <span class="badge bg-warning text-dark ms-2">
-            ${item.rating} ★
-          </span>
-
-        </div>
-
-
-        <!-- RATING -->
-        <div class="small mb-2">
-
-          <span class="text-warning">
-            ★★★★
-          </span>
-
-          <span class="text-muted">
-            (${item.reviewCount})
-          </span>
-
-        </div>
-
-
-        <!-- DESCRIPTION -->
-        <p class="text-secondary small mb-2 text-truncate">
-          ${item.description}
-        </p>
-
-
-        <!-- PRICE -->
-        <div class="mb-2">
-
-          <span class="fw-bold fs-5">
-            ${item.price}
-          </span>
-
-          <small class="text-muted">
-            ${item.currency}
-          </small>
-
-        </div>
-
-
-        <!-- SKU + STOCK -->
-        <div class="d-flex justify-content-between small border-top pt-2">
-
-          <span class="text-muted">
-            SKU: ${item.sku}
-          </span>
-
-          <span class="text-muted">
-            Stock: ${item.stock}
-          </span>
-
-        </div>
-
-
-        <!-- TAGS -->
-        <div class="mt-2">
-
-          ${item.tags
-            .map(
-              (tag) => `
-                <span class="badge rounded-pill glass-tag border me-1">
-                  ${tag}
-                </span>
-              `,
-            )
-            .join("")}
-
-        </div>
-
-
-        <!-- BUTTON -->
-        <button
-          class="btn glass-btn btn-sm w-100 mt-3 rounded-2"
-          ${item.isAvailable ? "" : "disabled"}
-        >
-          ${item.isAvailable ? "Add to Cart" : "Unavailable"}
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-`;
-          });
+          BodyLoad(filteredProducts);
         });
     }
 
-    function BodyLoad() {
-      fetch("../data/info.json")
-        .then((response) => {
-          return response.json();
-        })
-        .then((product) => {
-          product.map((item, index) => {
-            document.getElementById("productContainer").innerHTML += `
+    function BodyLoad(product) {
+      product.map((item, index) => {
+        document.getElementById("productContainer").innerHTML += `
   <div class="col-6 col-md-4 col-lg-3">
 
     <div class="card glass-card border-0 rounded-4 overflow-hidden h-100">
@@ -558,18 +452,13 @@
       <div class="position-relative">
 
         <img
-          src="${item.images[0]}"
+          src="${item.image}"
           class="card-img-top"
-          alt="${item.name}"
+          alt="${item.title}"
           style="height: 170px; object-fit: cover;"
         />
 
-        <!-- Availability -->
-        <span class="position-absolute top-0 end-0 m-2 badge ${
-          item.isAvailable ? "bg-success" : "bg-danger"
-        }">
-          ${item.isAvailable ? "Available" : "Out of Stock"}
-        </span>
+       
 
       </div>
 
@@ -587,11 +476,11 @@
         <div class="d-flex justify-content-between align-items-center mt-1">
 
           <h6 class="fw-bold mb-0 text-truncate">
-            ${item.name}
+            ${item.title}
           </h6>
 
           <span class="badge bg-warning text-dark ms-2">
-            ${item.rating} ★
+            ${item.rating.rate} ★
           </span>
 
         </div>
@@ -605,7 +494,7 @@
           </span>
 
           <span class="text-muted">
-            (${item.reviewCount})
+            (${item.rating.count})
           </span>
 
         </div>
@@ -625,49 +514,22 @@
           </span>
 
           <small class="text-muted">
-            ${item.currency}
+            ${item?.currency}
           </small>
 
         </div>
 
 
-        <!-- SKU + STOCK -->
-        <div class="d-flex justify-content-between small border-top pt-2">
-
-          <span class="text-muted">
-            SKU: ${item.sku}
-          </span>
-
-          <span class="text-muted">
-            Stock: ${item.stock}
-          </span>
-
-        </div>
-
-
-        <!-- TAGS -->
-        <div class="mt-2">
-
-          ${item.tags
-            .map(
-              (tag) => `
-                <span class="badge rounded-pill glass-tag border me-1">
-                  ${tag}
-                </span>
-              `,
-            )
-            .join("")}
-
-        </div>
+    
 
 
         <!-- BUTTON -->
         <button
         onClick="updateCartCount()"
           class="btn glass-btn btn-sm w-100 mt-3 rounded-2"
-          ${item.isAvailable ? "" : "disabled"}
+          
         >
-          ${item.isAvailable ? "Add to Cart" : "Unavailable"}
+          Add to Cart
         </button>
 
       </div>
@@ -676,169 +538,46 @@
 
   </div>
 `;
-          });
-        });
+      });
     }
 
     function tabLoad(value) {
       const buttons = document.querySelectorAll(".pill-filter-btn");
 
       buttons.forEach((btn) => {
-        if (btn.innerText.trim().toLowerCase() === value.trim().toLowerCase()) {
+        const btnValue = btn.getAttribute("data-category");
+
+        if (btnValue === value) {
           btn.classList.add("active");
         } else {
           btn.classList.remove("active");
         }
       });
 
-      fetch("../data/info.json")
-        .then((response) => {
-          return response.json();
-        })
-        .then((product) => {
-          if (value.trim().toLowerCase() === "all") {
-            BodyLoad();
-            return;
-          } else {
-            let filteredProducts = product.filter((item) => {
-              return item?.category
-                ?.toLowerCase()
-                .includes(value.trim().toLowerCase());
-            });
-
+      fetch("https://fakestoreapi.com/products")
+        .then((response) => response.json())
+        .then((products) => {
+          if (value === "all") {
             document.getElementById("productContainer").innerHTML = "";
-
-            filteredProducts.forEach((item) => {
-              document.getElementById("productContainer").innerHTML += `
-  <div class="col-6 col-md-4 col-lg-3">
-
-    <div class="card glass-card border-0 rounded-4 overflow-hidden h-100">
-
-      <!-- IMAGE -->
-      <div class="position-relative">
-
-        <img
-          src="${item.images[0]}"
-          class="card-img-top"
-          alt="${item.name}"
-          style="height: 170px; object-fit: cover;"
-        />
-
-        <!-- Availability -->
-        <span class="position-absolute top-0 end-0 m-2 badge ${
-          item.isAvailable ? "bg-success" : "bg-danger"
-        }">
-          ${item.isAvailable ? "Available" : "Out of Stock"}
-        </span>
-
-      </div>
-
-
-      <!-- CARD BODY -->
-      <div class="card-body p-3">
-
-        <!-- CATEGORY -->
-        <small class="text-muted">
-          ${item.category}
-        </small>
-
-
-        <!-- TITLE + TAG -->
-        <div class="d-flex justify-content-between align-items-center mt-1">
-
-          <h6 class="fw-bold mb-0 text-truncate">
-            ${item.name}
-          </h6>
-
-          <span class="badge bg-warning text-dark ms-2">
-            ${item.rating} ★
-          </span>
-
-        </div>
-
-
-        <!-- RATING -->
-        <div class="small mb-2">
-
-          <span class="text-warning">
-            ★★★★
-          </span>
-
-          <span class="text-muted">
-            (${item.reviewCount})
-          </span>
-
-        </div>
-
-
-        <!-- DESCRIPTION -->
-        <p class="text-secondary small mb-2 text-truncate">
-          ${item.description}
-        </p>
-
-
-        <!-- PRICE -->
-        <div class="mb-2">
-
-          <span class="fw-bold fs-5">
-            ${item.price}
-          </span>
-
-          <small class="text-muted">
-            ${item.currency}
-          </small>
-
-        </div>
-
-
-        <!-- SKU + STOCK -->
-        <div class="d-flex justify-content-between small border-top pt-2">
-
-          <span class="text-muted">
-            SKU: ${item.sku}
-          </span>
-
-          <span class="text-muted">
-            Stock: ${item.stock}
-          </span>
-
-        </div>
-
-
-        <!-- TAGS -->
-        <div class="mt-2">
-
-          ${item.tags
-            .map(
-              (tag) => `
-                <span class="badge rounded-pill glass-tag border me-1">
-                  ${tag}
-                </span>
-              `,
-            )
-            .join("")}
-
-        </div>
-
-
-        <!-- BUTTON -->
-        <button
-          class="btn glass-btn btn-sm w-100 mt-3 rounded-2"
-          ${item.isAvailable ? "" : "disabled"}
-        >
-          ${item.isAvailable ? "Add to Cart" : "Unavailable"}
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-`;
-            });
+            BodyLoad(products);
+            return;
           }
+
+          const filteredProducts = products.filter((item) => {
+            return (
+              item.category.trim().toLowerCase() === value.trim().toLowerCase()
+            );
+          });
+
+          document.getElementById("productContainer").innerHTML = "";
+
+          BodyLoad(filteredProducts);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
         });
     }
+
     let count = 0;
     function updateCartCount() {
       count++;
