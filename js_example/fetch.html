@@ -548,6 +548,7 @@
 
     let cartItems = [];
     let allProducts = [];
+    let searchTimer;
 
     fetch("https://fakestoreapi.com/products")
       .then((response) => response.json())
@@ -557,28 +558,33 @@
       });
 
     function searchClick() {
-      let input = document.getElementById("search").value.trim().toLowerCase();
-      fetch("https://fakestoreapi.com/products")
-        .then((response) => {
-          return response.json();
-        })
-        .then((product) => {
-          let filteredProducts = product.filter((items) => {
-            return (
-              items?.title.toLowerCase().includes(input) ||
-              items?.category.toLowerCase().includes(input)
-            );
-          });
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => {
+        let input = document
+          .getElementById("search")
+          .value.trim()
+          .toLowerCase();
+        fetch("https://fakestoreapi.com/products")
+          .then((response) => {
+            return response.json();
+          })
+          .then((product) => {
+            let filteredProducts = product.filter((items) => {
+              return (
+                items?.title.toLowerCase().includes(input) ||
+                items?.category.toLowerCase().includes(input)
+              );
+            });
 
-          if (input === "") {
-            BodyLoad();
-            return;
-          }
+            if (input === "") {
+              BodyLoad();
+              return;
+            }
 
-          document.getElementById("productContainer").innerHTML = "";
+            document.getElementById("productContainer").innerHTML = "";
 
-          if (filteredProducts.length === 0) {
-            document.getElementById("productContainer").innerHTML = `
+            if (filteredProducts.length === 0) {
+              document.getElementById("productContainer").innerHTML = `
               <div class="col-12 text-center py-5">
                 <div class="fs-1 text-muted">
                   <i class="bi bi-search"></i>
@@ -594,11 +600,12 @@
               </div>
             `;
 
-            return;
-          }
+              return;
+            }
 
-          BodyLoad(filteredProducts);
-        });
+            BodyLoad(filteredProducts);
+          });
+      }, 500);
     }
 
     function BodyLoad(product) {
