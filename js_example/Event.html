@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      button {
+        background: #08c5eb;
+        width: 100px;
+        outline: none;
+        padding: 10px;
+        color: white;
+        font-weight: bold;
+      }
+    </style>
+
+    <script>
+      function BodyLoad() {
+        // let btn = document.getElementById("parent");
+        // btn.addEventListener("dblclick", (e) => {
+        //   document.write(
+        //     `Type : ${e.type}- Target ${e.target} currTarget - ${e.currentTarget}`,
+        //   );
+        // console.log(e);
+        //});
+
+        // document.getElementById("ms").addEventListener("mouseup", () => {
+        //   console.log("Mouse button relased");
+        // });
+        // document.getElementById("ms").addEventListener("mousedown", () => {
+        //   console.log("Mouse button pressed");
+        // });
+
+        // document.getElementById("hv").addEventListener("mouseenter", () => {
+        //   console.log("Mouse hover");
+        // });
+        // document.getElementById("hv").addEventListener("mouseleave", () => {
+        //   console.log("Mouse leave");
+        // });
+
+        // const form = document.getElementById("myForm");
+        // const input = document.getElementById("username");
+
+        // input.addEventListener("input", (e) => {
+        //   console.log(e.target.value);
+        // });
+        // input.addEventListener("focus", () => {
+        //   console.log("Input focused");
+        // });
+
+        // input.addEventListener("blur", () => {
+        //   console.log("Input lost focus");
+        // });
+        // form.addEventListener("submit", (event) => {
+        //   event.preventDefault();
+        //   console.log("Form submitted");
+        // });
+        // document.addEventListener("copy", () => {
+        //   console.log("Copy operation");
+        // });
+
+        // document.addEventListener("cut", () => {
+        //   console.log("Cut operation");
+        // });
+
+        // document.addEventListener("paste", (event) => {
+        //   console.log("Paste operation");
+        // });
+
+        // const dropZone = document.getElementById("dropZone");
+
+        // dropZone.addEventListener("dragover", (event) => {
+        //   event.preventDefault();
+        // });
+
+        // dropZone.addEventListener("drop", (event) => {
+        //   event.preventDefault();
+        //   console.log("Item dropped");
+        // });
+
+        document.addEventListener("keydown", (event) => {
+          console.log("Pressed:", event.key);
+        });
+
+        document.addEventListener("keyup", (event) => {
+          console.log("Released:", event.key);
+        });
+      }
+    </script>
+  </head>
+  <body onload="BodyLoad()">
+    <!-- <div id="parent">
+      <button>Click</button>
+      <button id="ms">MOUSE</button>
+      <button id="hv">Hover me</button>
+    </div> -->
+
+    <!-- <form id="myForm">
+      <input type="text" id="username" required placeholder="Enter username" />
+      <button type="submit">Submit</button>
+    </form> -->
+
+    <div id="dropZone">Drop here</div>
+  </body>
+</html>
