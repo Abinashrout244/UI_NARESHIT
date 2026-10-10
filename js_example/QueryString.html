@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script>
+      function createQueryString(params) {
+        return Object.keys(params)
+          .map(
+            (key) =>
+              `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`,
+          )
+          .join("&");
+      }
+
+      function bodyLoad() {
+        const userInfo = { name: "Avi", email: "avi@example.com" };
+        const queryString = createQueryString(userInfo);
+
+        const url = `https://newsletter.com/signup?${queryString}`;
+        document.querySelector("h1").innerHTML = url;
+        console.log(url);
+      }
+    </script>
+  </head>
+  <body onload="bodyLoad()">
+    <h1></h1>
+  </body>
+</html>

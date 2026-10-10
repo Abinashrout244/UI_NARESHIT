@@ -79,12 +79,30 @@
         //   console.log("Item dropped");
         // });
 
-        document.addEventListener("keydown", (event) => {
-          console.log("Pressed:", event.key);
+        // document.addEventListener("keydown", (event) => {
+        //   console.log("Pressed:", event.key);
+        // });
+
+        // document.addEventListener("keyup", (event) => {
+        //   console.log("Released:", event.key);
+        // });
+
+        // document.getElementById("list").addEventListener("click", (e) => {
+        //   if (e.target.classList.contains("delete")) {
+        //     e.target.parentElement.remove();
+        //   }
+        // });
+
+        const btn = document.getElementById("btn");
+
+        btn.addEventListener("myevent", () => {
+          console.log("My custom event fired!");
         });
 
-        document.addEventListener("keyup", (event) => {
-          console.log("Released:", event.key);
+        const myEvent = new Event("myevent");
+
+        btn.addEventListener("click", () => {
+          btn.dispatchEvent(myEvent);
         });
       }
     </script>
@@ -101,6 +119,14 @@
       <button type="submit">Submit</button>
     </form> -->
 
-    <div id="dropZone">Drop here</div>
+    <!-- <div id="dropZone">Drop here</div> -->
+
+    <!-- <ul id="list">
+      <li>Item 1 <button class="delete">X</button></li>
+      <li>Item 2 <button class="delete">X</button></li>
+      <li>Item 3 <button class="delete">X</button></li>
+    </ul> -->
+
+    <button id="btn">Click Me</button>
   </body>
 </html>

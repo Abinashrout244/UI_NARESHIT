@@ -16,9 +16,11 @@
   </head>
   <script type="text/javascript">
     function bodyLoad() {
-      var result = new URLSearchParams(location.search);
+      var result = new URLSearchParams(window.location.search);
+
       var value1 = result.get("userName");
       var value2 = result.get("city");
+
       document.getElementById("name").innerHTML = value1;
       document.getElementById("city").innerHTML = value2;
     }
